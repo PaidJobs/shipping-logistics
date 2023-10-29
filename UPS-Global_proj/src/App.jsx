@@ -1,10 +1,15 @@
 import React from 'react'
+import Navlinks from './components/Navlinks'
+import Home from './Pages/Home'
+import Footer from './components/Footer'
 
 function App() {
 
   return (
     <>
-    <h1 className='bg-red-200'>Hello World!</h1>
+      <Navlinks/>
+        <Home/>
+      <Footer/>
     </>
   )
 }
