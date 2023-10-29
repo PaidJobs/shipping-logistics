@@ -11,6 +11,7 @@ function Home() {
                     <h1 className="text-header">Reliable Freight Solutions For Your Shipments</h1>
                     <p  className='max-w-md text-[20px] pt-2 pb-4'>We are your strategic partner, helping you achieve your business goals and bringing your goods to your doorsteps.</p>
                     <button className='text-white rounded-md h-9 px-8 bg-yellow-400'>Login</button>
+                    email
                 </div>
             </section>
 
