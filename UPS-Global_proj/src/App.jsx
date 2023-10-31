@@ -7,9 +7,7 @@ function App() {
 
   return (
     <>
-      <Navlinks/>
-        <Home/>
-      <Footer/>
+      <Home/>
     </>
   )
 }

@@ -1,9 +1,12 @@
 import React from 'react'
 import cards from '../../lib/cardsDetails'
+import Navlinks from '../../components/Navlinks'
+import Footer from '../../components/Footer'
 
 function Home() {
     return (
         <main>
+            <Navlinks/>
             {/** hero section.................................................................... */}
             <section className='h-screen w-full relative'>
                 <img src="/assets/hero-bg.jpg" className='object-top object-cover h-full w-full absolute brightness-50' alt="" />
@@ -57,6 +60,7 @@ function Home() {
                 </div>
             </section>
             {/**fourth section track field ends.................................................................... */}
+            <Footer/>
         </main>
     )
 }

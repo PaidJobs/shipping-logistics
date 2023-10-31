@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from "react-router-dom";
 
 function Navlinks() {
     return (
@@ -12,8 +13,16 @@ function Navlinks() {
                     </ul>
                 </div>
                 <div className='w-[20%] flex justify-around'>
-                    <button className='border-2 border-yellow-400 rounded-md text-yellow-400 h-9 px-8'>Sign Up</button>
-                    <button className='text-white rounded-md h-9 px-8 bg-yellow-400'>Login</button>
+                    <NavLink
+                     to={"/sign-up"}
+                    >
+                        <button className='border-2 border-yellow-400 rounded-md text-yellow-400 h-9 px-8'>Sign Up</button>
+                    </NavLink>
+                    <NavLink
+                        to={"/login"}
+                    >
+                        <button className='text-white rounded-md h-9 px-8 bg-yellow-400'>Login</button>
+                    </NavLink>
                 </div>
             </div>
         </div>

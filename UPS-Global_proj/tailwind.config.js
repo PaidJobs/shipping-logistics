@@ -8,7 +8,7 @@ export default {
     extend: {
       fontSize: {
         "header": "80px",
-        "para": "18px",
+        "para": "17px",
         "sub-head": "38px"
       }
     },
