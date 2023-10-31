@@ -6,7 +6,7 @@ function Footer() {
       <div className="w-[80%] mx-auto flex justify-between text-white">
         <div className="flex">
           <img
-            src="./src/assets/airplane-square.png"
+            src="/assets/airplane-square.png"
             className=" object-center h-12 w-12"
             alt=""
           />

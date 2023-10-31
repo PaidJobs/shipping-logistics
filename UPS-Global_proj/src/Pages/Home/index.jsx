@@ -6,7 +6,7 @@ function Home() {
         <main>
             {/** hero section.................................................................... */}
             <section className='h-screen w-full relative'>
-                <img src="./src/assets/hero-bg.jpg" className='object-top object-cover h-full w-full absolute brightness-50' alt="" />
+                <img src="/assets/hero-bg.jpg" className='object-top object-cover h-full w-full absolute brightness-50' alt="" />
                 <div className='max-w-3xl relative left-[8%] top-[9%] text-white'>
                     <h1 className="text-header">Reliable Freight Solutions For Your Shipments</h1>
                     <p  className='max-w-md text-[20px] pt-2 pb-4'>We are your strategic partner, helping you achieve your business goals and bringing your goods to your doorsteps.</p>
@@ -22,7 +22,7 @@ function Home() {
                         <h2 className='text-sub-head pb-4'>Delivering the best globallogistics solutions.</h2>
                         <p className='text-para pb-3'>We make logistics much easier and straightforward. Combining good service and technology makes everything easier</p>
                     </div>
-                    <img src="./src/assets/stacked-containers.png" alt="" />
+                    <img src="/assets/stacked-containers.png" alt="" />
                 </div>
             </section>
             {/**second section ends .................................................................... */}
