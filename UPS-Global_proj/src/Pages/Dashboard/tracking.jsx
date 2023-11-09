@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../../components/Footer";
 import Stepper from "../../components/stepper/stepper";
 
+
 function Tracking() {
   const cargoDetails = [
     {
