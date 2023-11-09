@@ -8,7 +8,7 @@ const steps = [
 ];
 
 const Stepper = () => {
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(0);
 
   return (
     <div className="w-[80%] mx-auto">
