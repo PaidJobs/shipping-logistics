@@ -2,3 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+
+  .btn{
+    @apply bg-gray-800 hover:bg-gray-700 text-gray-100 font-medium px-7 py-1
+  }
+  
+  .center-glass{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px;
+  }
+
+  @media (min-width: 640px) {
+    .center-glass{
+      display: grid;
+      width: 100%;
+      overflow: hidden;
+      grid-template-columns: 30% auto;
+    }
+  }
+
+  @media (min-width: 768px){
+    .center-glass{
+      display: grid;
+      width: 100%;
+      overflow: hidden;
+      grid-template-columns: 30% auto;
+    }
+  }
+
+  @media (min-width: 1024px){
+    .center-glass{
+      grid-template-columns: 30% auto;
+    }
+  }
