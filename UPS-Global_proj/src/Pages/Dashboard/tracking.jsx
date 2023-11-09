@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../../components/Footer";
-import Stepper from "../../components/stepper/stepper";
+import Stepper from "../../components/Stepper";
 
 
 function Tracking() {
