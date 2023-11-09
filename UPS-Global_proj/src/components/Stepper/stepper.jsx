@@ -12,7 +12,7 @@ const Stepper = () => {
 
   return (
     <div className="w-[80%] mx-auto">
-      <div className="flex items-center justify-center space-x-4 p-2 bg-green-300">
+      <div className="flex items-center justify-center space-x-4 p-2">
         {steps.map((step, index) => (
           <div
             key={step.name}
