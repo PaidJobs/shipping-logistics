@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import DashBoard from "./Pages/Dashboard";
 import Tracking from "./Pages/Dashboard/tracking";
-import Stepper from "./components/stepper/stepper";
 
 function App() {
   return (
