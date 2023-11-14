@@ -10,13 +10,14 @@ function Dashboard() {
         {/**section one------------------------------------------------- */}
       <section className="w-full h-full">
         <div className="w-full lg:w-[80%] mx-auto block sm:flex justify-between py-2 p-2 sm:p-4">
-          <div className="flex gap-x-1">
+          <div className="flex gap-x-1 max-w-sm">
             <img src=" /assets/logo.png" alt="" />
-            <div className="">
+            <div className="w-full">
               <p className="text-lg">UPs Global Fleet</p>
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>
+          <img src="/assets/user.png" className="w-12 h-12" alt="" />
         </div>
       </section>
       <section className="w-full min-h-screen">
@@ -35,7 +36,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className=" w-[70%] mx-auto bg-[#848185]/30">
+        <div className=" w-[70%] mx-auto bg-[#848185]/30 p-4 mt-5">
             <p className=" text-lg font-semibold pb-4">Shipment Statistics</p>
             <TableComponent/>
         </div>
