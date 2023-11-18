@@ -69,9 +69,9 @@ function Update() {
         </div>
       </section>
       <section className="w-full">
-        <div className="w-[80%] mx-auto">
-          <h2 className="text-lg pt-2 pb-2 font-semibold">Update user status.</h2>
-          <div className="w-[50%] p-2">
+        <div className="w-full sm:w-[80%] mx-auto">
+          <h2 className="text-lg pt-2 pb-2 font-semibold pl-2">Update user status.</h2>
+          <div className="w-full sm:w-[50%] p-2">
           <form action="" onSubmit={handleSubmit}>
             <div className="flex flex-col pt-2 gap-y-2">
               <label htmlFor="">Enter Tracking ID:</label>
@@ -123,7 +123,7 @@ function Update() {
                 </select>
               </label>
             </div>
-            <div className="flex justify-end pr-2">
+            <div className="flex sm:justify-end pr-2">
               <button
                 type="submit"
                 className=" px-8 py-3 bg-[#ED7D1A] text-white rounded-lg"
