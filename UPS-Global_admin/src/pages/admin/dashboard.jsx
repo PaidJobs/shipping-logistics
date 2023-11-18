@@ -24,19 +24,19 @@ function Dashboard() {
       </section>
       <section className="w-full min-h-screen">
         <div className="w-full lg:w-[70%] mx-auto p-2">
-          <div className="pt-4">
+          <div className="pt-4 relative">
             <img
               src="/assets/containers.png"
               className="h-[280px] w-full object-cover brightness-75 relative rounded-lg"
               alt=""
             />
-            <div className="absolute top-[20%] lg:top-[20%] pl-5">
+            <div className="absolute top-[20%] pl-5">
               <p className="text-3xl sm:text-4xl self-center text-white ">
                 Generate <br />
                 Tracking Number
               </p>
               <NavLink to={"/tracking"}>
-                <button className=" bg-[#ED7D1A] px-10 py-2 text-white sm:ml-10 mt-2 sm:mt-6 text-xl rounded-lg">
+                <button className="bg-[#ED7D1A] px-10 py-2 text-white mt-2 sm:mt-6 text-xl rounded-lg">
                   Generate
                 </button>
               </NavLink>
