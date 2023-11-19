@@ -27,7 +27,6 @@ function App() {
   };
 
   return (
-    <Wrapper>
       <Routes>
         <Route
           exact
@@ -40,7 +39,6 @@ function App() {
         />
         <Route path="/dashboard" element={<DashBoard />} />
       </Routes>
-    </Wrapper>
   );
 }
 
