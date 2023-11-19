@@ -3,17 +3,17 @@ import React from "react";
 function DashBoard() {
   return (
     <main>
-        {/**section one..................................................... */}
+      {/**section one..................................................... */}
       <section className="w-full h-full">
         <div className="w-full lg:w-[80%] mx-auto block sm:flex justify-between py-2 p-2 sm:p-4">
           <div className="flex gap-x-1">
             <img src=" /assets/logo.png" alt="" />
-            <div className="">
+            <div className="w-full">
               <p className="text-lg">UPs Global Fleet</p>
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>
-          <div className="block sm:flex gap-x-2 w-full sm:w-[50%]">
+          <div className="block sm:flex gap-x-2 w-full sm:w-[50%] pt-2">
             <input
               type="text"
               className="w-full rounded-md outline-none border-2 border-[#848185] pl-2 h-12"
@@ -25,37 +25,32 @@ function DashBoard() {
           </div>
         </div>
       </section>
-        {/**section one..................................................... */}
-        {/**section two..................................................... */}
+      {/**section one..................................................... */}
+      {/**section two..................................................... */}
       <section className="w-full min-h-screen">
         <div className="w-full lg:w-[80%] mx-auto p-2">
-          <div className="pt-10">
-            <img
-              src="/assets/containers.png"
-              className="h-[280px] w-full object-cover brightness-75 relative rounded-lg"
-              alt=""
-            />
-            <div className="absolute top-[40%] sm:top-[20%]">
-              <p className="text-5xl self-center pl-8 text-white ">
-                Track your <br /> shipment with us
-              </p>
+          <div className="pt-4">
+            <div className="relative">
+              <img
+                src="/assets/containers.png"
+                className="h-[280px] w-full object-cover brightness-75 rounded-lg"
+                alt=""
+              />
+              <div className="absolute top-[20%]">
+                <p className="text-5xl self-center pl-4 text-white ">
+                  Track your <br /> shipment with us
+                </p>
+              </div>
             </div>
-            <div className="block sm:flex justify-evenly pt-[6%] pb-[6%]">
-                <div className="text-center">
-                    <img src="/assets/oops.png" className="w-full sm:h-[260px]" alt="" />
-                    <p>No record of shipments.</p>
-                    <p>Input tracking number to track shipment.</p>
-                </div>
-              <div className=" sm:self-end pb-8">
+            <div className="block sm:flex justify-center pt-[6%] pb-[6%]">
+              <div className="text-center">
                 <img
-                  src="/assets/whatsapplogo.png"
-                  className=" h-16 w-16"
+                  src="/assets/oops.png"
+                  className="w-full sm:h-[260px]"
                   alt=""
                 />
-                <p>
-                  Chat With Us <br />
-                  For enquries or complaint
-                </p>
+                <p>No record of shipments.</p>
+                <p>Input tracking number to track shipment.</p>
               </div>
             </div>
           </div>
