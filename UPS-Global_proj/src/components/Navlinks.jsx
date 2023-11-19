@@ -12,7 +12,7 @@ function Navlinks() {
                         <li className=' text-xs'>Courier Service</li>
                     </ul>
                 </div>
-                <div className='w-[25%] md:flex justify-around hidden'>
+                {/* <div className='w-[25%] md:flex justify-around hidden'>
                     <NavLink
                      to={"/sign-up"}
                     >
@@ -23,7 +23,7 @@ function Navlinks() {
                     >
                         <button className='text-white rounded-md h-9 px-10 bg-yellow-400'>Login</button>
                     </NavLink>
-                </div>
+                </div> */}
             </div>
         </section>
     )
