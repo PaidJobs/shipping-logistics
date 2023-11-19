@@ -123,10 +123,10 @@ function Update() {
                 </select>
               </label>
             </div>
-            <div className="flex sm:justify-end pr-2">
+            <div className="flex pr-2">
               <button
                 type="submit"
-                className=" px-8 py-3 bg-[#ED7D1A] text-white rounded-lg"
+                className="px-8 py-3 bg-[#ED7D1A] text-white rounded-lg w-full"
               >
                 Update
               </button>

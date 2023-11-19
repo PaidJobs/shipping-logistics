@@ -102,10 +102,7 @@ function DropModel({ isOpen, onClose }) {
           <FaTimes color="black" />
         </button>
       </div>
-      <ul className="flex flex-col gap-2 text-sm text-[#848185]">
-        <li className="">
-          <button onClick={() => handleItemClick("Delayed")}>Copy tracking number</button>
-        </li>
+      <ul className="flex flex-col gap-2 text-sm text-[#848185] pb-2">
         <li className="">
           {" "}
           <NavLink 
@@ -114,12 +111,6 @@ function DropModel({ isOpen, onClose }) {
               Update Status
             </button>
           </NavLink>
-        </li>
-        <li className=" ">
-          {" "}
-          <button onClick={() => handleItemClick("Delivered")}>
-            Update Error
-          </button>
         </li>
       </ul>
     </div>
