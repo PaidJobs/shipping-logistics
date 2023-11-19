@@ -11,6 +11,7 @@ const Stepper = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
+    
     <div className="w-[80%] mx-auto">
       <div className="flex items-center justify-center space-x-4 p-2">
         {steps.map((step, index) => (
