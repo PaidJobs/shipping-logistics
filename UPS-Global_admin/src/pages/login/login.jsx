@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function LoginAdmin() {
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
@@ -13,24 +14,25 @@ function LoginAdmin() {
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, userDetails.email, userDetails.password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        // navigate to admin
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      setLoading(true);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        userDetails.email,
+        userDetails.password
+      );
+      const user = userCredential.user;
+      navigate("/dashboard");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -73,8 +75,9 @@ function LoginAdmin() {
               <button
                 type="submit"
                 className="w-full bg-[#ED7D1A] text-center rounded-md py-2"
+                disabled={loading}
               >
-                Login
+                 {loading ? "Loading..." : "Login"}
               </button>
               {error && <span>Wrong email or password</span>}
             </div>

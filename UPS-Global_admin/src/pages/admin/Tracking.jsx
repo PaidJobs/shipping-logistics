@@ -140,14 +140,16 @@ function Tracking() {
           <h2 className=" text-lg font-semibold">
             Fill in details to generate tracking number
           </h2>
-          <div className="bg-[#848185]/30 w-full p-4 ">
-            <p className="text-lg">Crago Details</p>
-            <p className="pb-2 text-lg">Input Cargo details</p>
+          <div className="bg-[#F7F5F8]/30 w-full p-4 ">
+          <div style={{color: 'black', fontSize: 23, fontFamily: 'Inter', fontWeight: '600', wordWrap: 'break-word'}}>Cargo Details</div>
+          <div style={{color: 'black', fontSize: 18, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Input Cargo Details</div>
             <form action="" onSubmit={handleSubmit}>
               <div className="pb-4 bg-white rounded-lg p-2">
                 <div className="flex flex-col pt-4">
-                  <label htmlFor="">Package Type:</label>
+                  <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Package Type:</label>
+                 
                   <input
+                  style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
                     id="package_type"
                     name="package_type"
                     value={cargoContents.package_type}
@@ -161,9 +163,10 @@ function Tracking() {
                   </span>
                 </div>
 
-                <div className="flex flex-col pt-2">
-                  <label htmlFor="">Shipping Date:</label>
+                <div className="flex flex-col pt-3">
+                  <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Shipping Date:</label>
                   <input
+                    style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
                     type="datetime-local"
                     id="shipping_date"
                     name="shipping_date"
@@ -176,9 +179,10 @@ function Tracking() {
                     {formErrors.shipping_date}
                   </span>
                 </div>
-                <div className="flex flex-col pb-2 pt-2">
-                  <label htmlFor="">Delivery Method:</label>
+                <div className="flex flex-col pb-2 pt-3">
+                  <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Delivery Method:</label>
                   <input
+                  style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
                     type="text"
                     id="delivery_method"
                     name="delivery_method"
@@ -195,13 +199,15 @@ function Tracking() {
 
               {/**cargo valuable input----------------------------------------------------*/}
               <div className="mt-4">
-                <p className="text-lg">Cargo Valuables</p>
-                <p className="text-lg pb-2">Input Cargo Content</p>
-                <div className="bg-white rounded-lg">
-                  <div className="flex flex-wrap lg:flex-nowrap sm:justify-between gap-x-3">
-                    <div className="flex flex-col w-full lg:w-[60%] p-2 ">
-                      <label htmlFor="">Valuables:</label>
+              <div style={{color: 'black', fontSize: 23, fontFamily: 'Inter', fontWeight: '600', wordWrap: 'break-word'}}>Cargo Valuables</div>
+               
+              <div style={{color: 'black', fontSize: 18, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Input Cargo Content</div>
+              <div className="pb-4 bg-white rounded-lg p-2">
+              <div className="flex flex-col pt-4">
+                   
+                      <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Valuables:</label>
                       <input
+                        style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
                         id="quantity"
                         name="quantity"
                         value={cargoContents.quantity}
@@ -213,10 +219,11 @@ function Tracking() {
                       <span style={{ color: "red" }}>
                         {formErrors.quantity}
                       </span>
-                    </div>
-                    <div className="flex flex-col w-full lg:w-[20%] p-2">
-                      <label htmlFor="">Weight in kg:</label>
+
+                    <div className="flex flex-col pt-3">
+                      <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Weight in kg:</label>
                       <input
+                        style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
                         id="valuable"
                         name="valuable"
                         value={cargoContents.valuable}
@@ -229,9 +236,10 @@ function Tracking() {
                         {formErrors.valuable}
                       </span>
                     </div>
-                    <div className="flex flex-col w-full lg:w-[20%] p-2">
-                      <label htmlFor="">Qty:</label>
+                    <div className="flex flex-col pt-3">
+                      <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Qty:</label>
                       <input
+                        style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
                         id="weight"
                         name="weight"
                         value={cargoContents.weight}
