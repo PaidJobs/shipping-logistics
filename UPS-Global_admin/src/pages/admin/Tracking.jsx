@@ -192,6 +192,8 @@ function Tracking() {
                   </span>
                 </div>
               </div>
+
+              {/**cargo valuable input----------------------------------------------------*/}
               <div className="mt-4">
                 <p className="text-lg">Cargo Valuables</p>
                 <p className="text-lg pb-2">Input Cargo Content</p>
@@ -251,6 +253,124 @@ function Tracking() {
                       onClick={validateForm}
                     >
                       Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/**cargo route inpute value............................................................*/}
+              <div className="mt-4">
+                <p className="text-lg">Cargo Route</p>
+                <p className="text-lg pb-2">Input Cargo Route</p>
+                <div className="bg-white rounded-lg">
+                  <div className="gap-x-3">
+                    <div className="flex flex-col w-full p-2">
+                      <label htmlFor="">Starting Location:</label>
+                      <input
+                        id="quantity"
+                        name="quantity"
+                        value={cargoContents.quantity}
+                        onChange={handleInputChange}
+                        type="text"
+                        className="h-10 p-2 border-2 border-black rounded-lg"
+                        placeholder="Input starting location"
+                      />
+                      <span style={{ color: "red" }}>
+                        {formErrors.quantity}
+                      </span>
+                    </div>
+                    <div className="flex flex-col w-full p-2">
+                      <label htmlFor="">Discharge Location:</label>
+                      <input
+                        id="valuable"
+                        name="valuable"
+                        value={cargoContents.valuable}
+                        onChange={handleInputChange}
+                        type="text"
+                        className="h-10 p-2 border-2 border-black rounded-lg"
+                        placeholder="Input discharge location"
+                      />
+                      <span style={{ color: "red" }}>
+                        {formErrors.valuable}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/**customer details form ---------------------------------------------------------------------- */}
+              <div className="mt-4">
+                <p className="text-lg">Customers Details</p>
+                <p className="text-lg pb-2">Input Customers Details</p>
+                <div className="bg-white rounded-lg">
+                  <div className="gap-x-3">
+                    <div className="flex flex-col w-full p-2 ">
+                      <label htmlFor="">Recievers name:</label>
+                      <input
+                        id="quantity"
+                        name="quantity"
+                        value={cargoContents.quantity}
+                        onChange={handleInputChange}
+                        type="text"
+                        className="h-10 p-2 border-2 border-black rounded-lg"
+                        placeholder="Recievers name"
+                      />
+                      <span style={{ color: "red" }}>
+                        {formErrors.quantity}
+                      </span>
+                    </div>
+                    <div className="flex flex-col w-full p-2">
+                      <label htmlFor="">Recievers Contact:</label>
+                      <input
+                        id="valuable"
+                        name="valuable"
+                        value={cargoContents.valuable}
+                        onChange={handleInputChange}
+                        type="text"
+                        className="h-10 p-2 border-2 border-black rounded-lg"
+                        placeholder="Recievers Contact"
+                      />
+                      <span style={{ color: "red" }}>
+                        {formErrors.valuable}
+                      </span>
+                    </div>
+                    <div className="flex flex-col w-full p-2">
+                      <label htmlFor="">Recievers Email:</label>
+                      <input
+                        id="weight"
+                        name="weight"
+                        value={cargoContents.weight}
+                        onChange={handleInputChange}
+                        type="text"
+                        className="h-10 p-2 border-2 border-black rounded-lg"
+                        placeholder="Recievers Contact"
+                      />
+                      <span style={{ color: "red" }}>{formErrors.weight}</span>
+                    </div>
+                    <div className="flex flex-col w-full p-2">
+                      <label htmlFor="">Delievery Address:</label>
+                      <input
+                        id="weight"
+                        name="weight"
+                        value={cargoContents.weight}
+                        onChange={handleInputChange}
+                        type="text"
+                        className="h-10 p-2 border-2 border-black rounded-lg"
+                        placeholder="Delievery Address"
+                      />
+                      <span style={{ color: "red" }}>{formErrors.weight}</span>
+                    </div>
+                  </div>
+                  <div className=" flex justify-center px-4 gap-x-6 pt-2 pb-2">
+                    <button className=" px-8 py-2 bg-white border-[#ED7D1A] border-2 rounded-md w-full">
+                      Back
+                    </button>
+                    <button
+                      className=" px-8 py-2 bg-[#ED7D1A] rounded-md w-full"
+                      type="submit"
+                      onClick={validateForm}
+                    >
+                      Generate Tracking Number
                     </button>
                   </div>
                 </div>
