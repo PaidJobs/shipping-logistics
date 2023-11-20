@@ -79,6 +79,7 @@ function Tracking() {
         });
         alert("Form submitted successfully!");
       } catch (error) {
+        alert(error);
         console.error("error was found: ", error);
       }
 
@@ -135,12 +136,13 @@ function Tracking() {
           />
         </div>
       </section>
-      <section className="w-full min-h-screen">
-        <div className="w-full sm:w-[70%] mx-auto p-2">
-          <h2 className=" text-lg font-semibold">
-            Fill in details to generate tracking number
-          </h2>
+      <section className="w-full sm:w-[60%] mx-auto flex justify-center min-h-screen">
+        <div className="w-full sm:w-[80%] mx-auto p-1">
+          
+          
           <div className="bg-[#F7F5F8]/30 w-full p-4 ">
+          <div style={{color: 'black', paddingBottom: 30,  fontSize: 20, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Fill in details to generate tracking number</div>
+          
           <div style={{color: 'black', fontSize: 23, fontFamily: 'Inter', fontWeight: '600', wordWrap: 'break-word'}}>Cargo Details</div>
           <div style={{color: 'black', fontSize: 18, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Input Cargo Details</div>
             <form action="" onSubmit={handleSubmit}>
@@ -149,9 +151,10 @@ function Tracking() {
                   <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Package Type:</label>
                  
                   <input
-                  style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
+                  style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
                     id="package_type"
                     name="package_type"
+                  
                     value={cargoContents.package_type}
                     onChange={handleInputChange}
                     type="text"
