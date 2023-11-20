@@ -2,30 +2,32 @@ import React from "react";
 import cards from "../../lib/cardsDetails";
 import Navlinks from "../../components/Navlinks";
 import Footer from "../../components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { dataBase } from "../../lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
-function Home() {
+function Home({ onValueChange }) {
   const [userValue, setUserValue] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleInput = (e) => {
-    setUserValue(e.target.value);
+    const newValue = e.target.value;
+    setUserValue(newValue);
+    onValueChange(newValue);
   };
 
-  const handleButton = () => {
-    // Check the input field's value and set the flag accordingly
-    if (userValue.trim() === "") {
-      setError("Please input tracking number.");
-    } else {
-      setError(""); // Clear any previous error messages
-      // Check the input field's value and navigate accordingly
-    //   if (userValue === "siri") {
-    //     navigate("/tracking");
-    //   } else {
-        navigate("/tracking", { state: { trackingNumber: userValue } });
-      //}
+  const handleSearch = async () => {
+    try {
+      const docRef = doc(dataBase, "products", userValue.trim());
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        navigate(`/tracking/${userValue}`);
+      } else {
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.log("Error searching document:", error);
     }
   };
 
@@ -114,13 +116,12 @@ function Home() {
                 placeholder="Track Shipment"
               />
               <button
-                onClick={handleButton}
+                onClick={handleSearch}
                 className="bg-[#FFB607] px-16 py-2 rounded-md text-white mt-4 sm:mt-0"
               >
                 Track
               </button>
             </div>
-            {error && <p className="text-red-500 mt-2">{error}</p>}
           </div>
         </div>
       </section>

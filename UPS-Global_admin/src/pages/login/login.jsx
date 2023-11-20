@@ -21,7 +21,6 @@ function LoginAdmin() {
         const user = userCredential.user;
         // navigate to admin
         navigate("/dashboard");
-        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -36,16 +35,16 @@ function LoginAdmin() {
 
   return (
     <section>
-      <div className=" w-[80%] mx-auto flex gap-x-2 py-2">
+      <div className="w-full sm:w-[80%] mx-auto flex gap-x-2 py-2">
         <img src=" /assets/logo.png" alt="" />
         <div className="">
           <p className="text-lg">UPs Global Fleet</p>
           <p className=" text-xs">Courier Service</p>
         </div>
       </div>
-      <div className="w-[80%] mx-auto flex justify-center">
-        <div className="w-[40%] pt-[5%] pb-[5%]">
-          <h1 className=" text-5xl pb-2">Login</h1>
+      <div className="w-full sm:w-[80%] mx-auto flex justify-center">
+        <div className="w-full p-2 md:w-[50%] pt-[5%] pb-[5%]">
+          <h1 className=" text-3xl pb-2">Login</h1>
           <p className=" text-lg pb-14">
             Input email or username below to login
           </p>

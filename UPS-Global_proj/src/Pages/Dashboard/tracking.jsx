@@ -2,8 +2,7 @@ import React from "react";
 import Footer from "../../components/Footer";
 import Stepper from "../../components/Stepper";
 
-
-function Tracking() {
+function Tracking({ userValue }) {
   const cargoDetails = [
     {
       id: 1,
@@ -107,7 +106,7 @@ function Tracking() {
       </section>
       {/**stepper component  */}
       <div className=" pt-[2%] pb-[2%] hidden sm:block">
-        <Stepper/>
+        <Stepper />
       </div>
       {/**stepper component  */}
       <section className="w-full h-full">
@@ -117,10 +116,10 @@ function Tracking() {
               <p className=" pb-3">Customer Details</p>
               <div className=" rounded-lg bg-white">
                 {customerDetails.map((item) => (
-                    <div key={item.id} className="p-2">
+                  <div key={item.id} className="p-2">
                     <h2 className="">{item.discription}:</h2>
                     <p className="pb-2">{item.corres}</p>
-                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -169,10 +168,11 @@ function Tracking() {
                 Back
               </button>
             </div>
+            <div>Document found! Do something with the ID: {userValue}</div>
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </main>
   );
 }
