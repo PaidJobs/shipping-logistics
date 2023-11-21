@@ -15,24 +15,30 @@ function LoginAdmin() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        userDetails.email,
-        userDetails.password
-      );
-      const user = userCredential.user;
-      navigate("/dashboard");
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-      setError(true);
-    } finally {
-      setLoading(false);
+    if(userDetails.email !== "" && userDetails.password !==""){
+      e.preventDefault();
+      try {
+        setLoading(true);
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          userDetails.email,
+          userDetails.password
+        );
+        const user = userCredential.user;
+        navigate("/dashboard");
+      } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert( error.message);
+        console.log(errorCode, errorMessage);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    } else{
+      alert("Please complete the form to log in");
     }
+   
   };
 
   return (
@@ -44,13 +50,13 @@ function LoginAdmin() {
           <p className=" text-xs">Courier Service</p>
         </div>
       </div>
-      <div className="w-full sm:w-[80%] mx-auto flex justify-center">
+      <div className="w-full sm:w-[80%] mx-auto flex justify-center" style={{paddingLeft: 20, paddingRight: 20,}}>
         <div className="w-full p-2 md:w-[50%] pt-[5%] pb-[5%]">
           <h1 className=" text-3xl pb-2">Login</h1>
           <p className=" text-lg pb-14">
             Input email or username below to login
           </p>
-          <form action="" onSubmit={handleLogin}>
+          <form action="" onSubmit={handleLogin} >
             <div className="pb-4">
               <input
                 type="text"
