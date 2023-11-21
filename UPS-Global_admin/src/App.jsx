@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/admin/dashboard";
 import Tracking from "./pages/admin/Tracking";
 import Update from "./pages/admin/Update";
+import Summary from "./pages/admin/user_summary";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/update" element={<Update/>} />
+        <Route path="/summary" element={<Summary/>} />
       </Routes>
     </Router>
   );

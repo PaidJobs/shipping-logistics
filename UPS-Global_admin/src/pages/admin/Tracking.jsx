@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { dataBase } from "../../config/firebase";
 import { collection, Timestamp, addDoc, arrayUnion } from "firebase/firestore";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Tracking() {
+  const [documentId, setDocumentId] = useState(null);
+  const navigate = useNavigate();
+
   const [cargoContents, setCargoContent] = useState({
     package_type: "",
     delivery_method: "",
     shipping_date: "",
-    quantity: "",
-    valuable: "",
-    weight: "",
+    starting_location: "",
+    destination: "",
+    customer_name: "",
+    customer_phone: "",
+    customer_address: "",
+    customer_email: "",
     //pending delivery date
     delivery_date: "",
     status: "in port",
@@ -19,10 +26,51 @@ function Tracking() {
     package_type: "",
     delivery_method: "",
     shipping_date: "",
-    quantity: "",
+    starting_location: "",
+    destination: "",
+    customer_name: "",
+    customer_phone: "",
+    customer_address: "",
+    customer_email: "",
+  });
+
+  //for adding cargo details
+  const [inputValues, setInputValues] = useState({
     valuable: "",
     weight: "",
+    quantity: "",
   });
+
+  const [dataArray, setDataArray] = useState([]);
+  const [error, setError] = useState("");
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setInputValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+
+  const addCargo = () => {
+    if (!inputValues.valuable || !inputValues.weight || !inputValues.quantity) {
+      setError("All fields must be filled out.");
+      return;
+    }
+    console.log("Adding to dataArray:", inputValues);
+    setError("");
+    setDataArray((prevArray) => [...prevArray, inputValues]);
+    setInputValues({
+      valuable: "",
+      weight: "",
+      quantity: "",
+    });
+  };
+
+  useEffect(() => {
+    // Log dataArray whenever it changes
+    console.log("dataArray:", dataArray);
+  }, [dataArray]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -61,11 +109,17 @@ function Tracking() {
               new Date(cargoContents.shipping_date)
             ),
           },
-          cargo_valuables: arrayUnion({
-            quantity: cargoContents.quantity,
-            valuable: cargoContents.valuable,
-            weight: cargoContents.weight,
-          }),
+          customer_details: {
+            name: cargoContents.customer_name,
+            phoneNumber: cargoContents.customer_phone,
+            address: cargoContents.customer_address,
+            customer_email: cargoContents.customer_email,
+          },
+          cargo_route: {
+            origin: cargoContents.starting_location,
+            destination_point: cargoContents.destination,
+          },
+          cargo_valuables: dataArray,
           status: "In Transit",
         });
 
@@ -73,22 +127,30 @@ function Tracking() {
           package_type: "",
           delivery_method: "",
           shipping_date: "",
-          quantity: "",
-          valuable: "",
-          weight: "", // Reset the dateTime field
+          starting_location: "",
+          destination: "",
+          customer_name: "",
+          customer_phone: "",
+          customer_address: "",
+          customer_email: "",
         });
         alert("Form submitted successfully!");
+        //set document id
+        setDocumentId(docRef.id);
+        navigate(`/dashboard`);
       } catch (error) {
         console.error("error was found: ", error);
       }
-
       setFormErrors({
         package_type: "",
         delivery_method: "",
         shipping_date: "",
-        quantity: "",
-        valuable: "",
-        weight: "",
+        starting_location: "",
+        destination: "",
+        customer_name: "",
+        customer_phone: "",
+        customer_address: "",
+        customer_email: "",
       });
     }
   };
@@ -110,6 +172,36 @@ function Tracking() {
     // Validate dateTime if needed
     if (!cargoContents.shipping_date) {
       errors.shipping_date = "Date and time are required";
+      isValid = false;
+    }
+
+    if (cargoContents.starting_location.trim() === "") {
+      errors.starting_location = "This field is required";
+      isValid = false;
+    }
+
+    if (cargoContents.destination.trim() === "") {
+      errors.destination = "This field is required";
+      isValid = false;
+    }
+
+    if (cargoContents.customer_name.trim() === "") {
+      errors.customer_name = "This field is required";
+      isValid = false;
+    }
+
+    if (cargoContents.customer_phone.trim() === "") {
+      errors.customer_phone = "This field is required";
+      isValid = false;
+    }
+
+    if (cargoContents.customer_email.trim() === "") {
+      errors.customer_email = "This field is required";
+      isValid = false;
+    }
+
+    if (cargoContents.customer_address.trim() === "") {
+      errors.customer_address = "This field is required";
       isValid = false;
     }
 
@@ -141,15 +233,47 @@ function Tracking() {
             Fill in details to generate tracking number
           </h2>
           <div className="bg-[#F7F5F8]/30 w-full p-4 ">
-          <div style={{color: 'black', fontSize: 23, fontFamily: 'Inter', fontWeight: '600', wordWrap: 'break-word'}}>Cargo Details</div>
-          <div style={{color: 'black', fontSize: 18, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Input Cargo Details</div>
+            <div
+              style={{
+                color: "black",
+                fontSize: 23,
+                fontFamily: "Inter",
+                fontWeight: "600",
+                wordWrap: "break-word",
+              }}
+            >
+              Cargo Details
+            </div>
+            <div
+              style={{
+                color: "black",
+                fontSize: 18,
+                fontFamily: "Inter",
+                fontWeight: "400",
+                wordWrap: "break-word",
+              }}
+            >
+              Input Cargo Details
+            </div>
             <form action="" onSubmit={handleSubmit}>
               <div className="pb-4 bg-white rounded-lg p-2">
                 <div className="flex flex-col pt-4">
-                  <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Package Type:</label>
-                 
                   <input
-                  style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      paddingLeft: 20,
+                      paddingRight: 20,
+                      paddingTop: 9,
+                      paddingBottom: 10,
+                      background: "white",
+                      borderRadius: 10,
+                      border: "1px #848185 solid",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      gap: 10,
+                      display: "inline-flex",
+                    }}
                     id="package_type"
                     name="package_type"
                     value={cargoContents.package_type}
@@ -164,9 +288,34 @@ function Tracking() {
                 </div>
 
                 <div className="flex flex-col pt-3">
-                  <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Shipping Date:</label>
+                  <label
+                    style={{
+                      color: "black",
+                      fontSize: 15,
+                      fontFamily: "Inter",
+                      fontWeight: "400",
+                      wordWrap: "break-word",
+                    }}
+                    htmlFor=""
+                  >
+                    Shipping Date:
+                  </label>
                   <input
-                    style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      paddingLeft: 20,
+                      paddingRight: 20,
+                      paddingTop: 9,
+                      paddingBottom: 10,
+                      background: "white",
+                      borderRadius: 10,
+                      border: "1px #848185 solid",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      gap: 10,
+                      display: "inline-flex",
+                    }}
                     type="datetime-local"
                     id="shipping_date"
                     name="shipping_date"
@@ -180,9 +329,34 @@ function Tracking() {
                   </span>
                 </div>
                 <div className="flex flex-col pb-2 pt-3">
-                  <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Delivery Method:</label>
+                  <label
+                    style={{
+                      color: "black",
+                      fontSize: 15,
+                      fontFamily: "Inter",
+                      fontWeight: "400",
+                      wordWrap: "break-word",
+                    }}
+                    htmlFor=""
+                  >
+                    Delivery Method:
+                  </label>
                   <input
-                  style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      paddingLeft: 20,
+                      paddingRight: 20,
+                      paddingTop: 9,
+                      paddingBottom: 10,
+                      background: "white",
+                      borderRadius: 10,
+                      border: "1px #848185 solid",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      gap: 10,
+                      display: "inline-flex",
+                    }}
                     type="text"
                     id="delivery_method"
                     name="delivery_method"
@@ -199,107 +373,278 @@ function Tracking() {
 
               {/**cargo valuable input----------------------------------------------------*/}
               <div className="mt-4">
-              <div style={{color: 'black', fontSize: 23, fontFamily: 'Inter', fontWeight: '600', wordWrap: 'break-word'}}>Cargo Valuables</div>
-               
-              <div style={{color: 'black', fontSize: 18, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Input Cargo Content</div>
-              <div className="pb-4 bg-white rounded-lg p-2">
-              <div className="flex flex-col pt-4">
-                   
-                      <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Valuables:</label>
-                      <input
-                        style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
-                        id="quantity"
-                        name="quantity"
-                        value={cargoContents.quantity}
-                        onChange={handleInputChange}
-                        type="text"
-                        className="h-10 p-2 border-2 border-black rounded-lg"
-                        placeholder="Name of package"
-                      />
-                      <span style={{ color: "red" }}>
-                        {formErrors.quantity}
-                      </span>
+                <div
+                  style={{
+                    color: "black",
+                    fontSize: 23,
+                    fontFamily: "Inter",
+                    fontWeight: "600",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  Cargo Valuables
+                </div>
 
-                    <div className="flex flex-col pt-3">
-                      <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Weight in kg:</label>
-                      <input
-                        style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
-                        id="valuable"
-                        name="valuable"
-                        value={cargoContents.valuable}
-                        onChange={handleInputChange}
-                        type="text"
-                        className="h-10 p-2 border-2 border-black rounded-lg"
-                        placeholder="Weight"
-                      />
-                      <span style={{ color: "red" }}>
-                        {formErrors.valuable}
-                      </span>
+                <div
+                  style={{
+                    color: "black",
+                    fontSize: 18,
+                    fontFamily: "Inter",
+                    fontWeight: "400",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  Input Cargo Content
+                </div>
+                <div className="">
+                  Cargo Entered.
+                  {dataArray.map((item, index) => (
+                    <ul key={index} className="flex justify-between">
+                      <li>{index + 1}</li>
+                      <li>Valuable: {item.valuable}</li>
+                      <li>Weight: {item.weight}</li>
+                      <li>Quantity: {item.quantity}</li>
+                    </ul>
+                  ))}
+                </div>
+                <div className="pb-4 bg-white rounded-lg p-2">
+                  <fieldset>
+                    <div className="inline md:flex gap-x-2">
+                      <div className="flex flex-col pt-3 lg:w-[60%]">
+                        <label
+                          style={{
+                            color: "black",
+                            fontSize: 15,
+                            fontFamily: "Inter",
+                            fontWeight: "400",
+                            wordWrap: "break-word",
+                          }}
+                          htmlFor=""
+                        >
+                          Valuables:
+                        </label>
+                        <input
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            paddingLeft: 20,
+                            paddingRight: 20,
+                            paddingTop: 9,
+                            paddingBottom: 10,
+                            background: "white",
+                            borderRadius: 10,
+                            border: "1px #848185 solid",
+                            justifyContent: "flex-start",
+                            alignItems: "center",
+                            gap: 10,
+                            display: "inline-flex",
+                          }}
+                          name="valuable"
+                          value={inputValues.valuable}
+                          onChange={handleInput}
+                          type="text"
+                          className="h-10 p-2 border-2 border-black rounded-lg outline-none"
+                          placeholder="Name of package"
+                        />
+                      </div>
+                      <div className="flex flex-col lg:w-[20%] pt-3">
+                        <label
+                          style={{
+                            color: "black",
+                            fontSize: 15,
+                            fontFamily: "Inter",
+                            fontWeight: "400",
+                            wordWrap: "break-word",
+                          }}
+                          htmlFor=""
+                        >
+                          Weight in kg:
+                        </label>
+                        <input
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            paddingLeft: 20,
+                            paddingRight: 20,
+                            paddingTop: 9,
+                            paddingBottom: 10,
+                            background: "white",
+                            borderRadius: 10,
+                            border: "1px #848185 solid",
+                            justifyContent: "flex-start",
+                            alignItems: "center",
+                            gap: 10,
+                            display: "inline-flex",
+                          }}
+                          name="weight"
+                          value={inputValues.weight}
+                          onChange={handleInput}
+                          type="text"
+                          className="h-10 p-2 border-2 border-black rounded-lg outline-none"
+                          placeholder="Weight"
+                        />
+                      </div>
+                      <div className="flex flex-col lg:w-[20%] pt-3">
+                        <label
+                          style={{
+                            color: "black",
+                            fontSize: 15,
+                            fontFamily: "Inter",
+                            fontWeight: "400",
+                            wordWrap: "break-word",
+                          }}
+                          htmlFor=""
+                        >
+                          Qty:
+                        </label>
+                        <input
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            paddingLeft: 20,
+                            paddingRight: 20,
+                            paddingTop: 9,
+                            paddingBottom: 10,
+                            background: "white",
+                            borderRadius: 10,
+                            border: "1px #848185 solid",
+                            justifyContent: "flex-start",
+                            alignItems: "center",
+                            gap: 10,
+                            display: "inline-flex",
+                          }}
+                          name="quantity"
+                          value={inputValues.quantity}
+                          onChange={handleInput}
+                          type="text"
+                          className="h-10 p-2 border-2 border-black rounded-lg outline-none"
+                          placeholder="Quantity"
+                        />
+                      </div>
                     </div>
-                    <div className="flex flex-col pt-3">
-                      <label style={{color: 'black', fontSize: 15, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}} htmlFor="">Qty:</label>
-                      <input
-                        style={{width: '100%', height: '100%', paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, background: 'white', borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
-                        id="weight"
-                        name="weight"
-                        value={cargoContents.weight}
-                        onChange={handleInputChange}
-                        type="text"
-                        className="h-10 p-2 border-2 border-black rounded-lg"
-                        placeholder="Quantity"
-                      />
-                      <span style={{ color: "red" }}>{formErrors.weight}</span>
+                    <div className="pt-4 flex justify-end">
+                      <button
+                        className="px-8 py-2 bg-[#ED7D1A] rounded-md"
+                        type="button"
+                        onClick={addCargo}
+                      >
+                        Add
+                      </button>
                     </div>
-                  </div>
-                  <div className=" flex justify-center sm:justify-end px-4 gap-x-6 pt-2 pb-2">
-                    <button className=" px-8 py-2 bg-white border-[#ED7D1A] border-2 rounded-md">
-                      Delete
-                    </button>
-                    <button
-                      className=" px-8 py-2 bg-[#ED7D1A] rounded-md"
-                      type="submit"
-                      onClick={validateForm}
-                    >
-                      Add
-                    </button>
-                  </div>
+                  </fieldset>
+
+                  {error && <p style={{ color: "red" }}>{error}</p>}
                 </div>
               </div>
 
               {/**cargo route inpute value............................................................*/}
               <div className="mt-4">
-                <p className="text-lg">Cargo Route</p>
-                <p className="text-lg pb-2">Input Cargo Route</p>
+                <p
+                  className="text-lg"
+                  style={{
+                    color: "black",
+                    fontSize: 23,
+                    fontFamily: "Inter",
+                    fontWeight: "600",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  Cargo Route
+                </p>
+                <p
+                  className="text-lg pb-2"
+                  style={{
+                    color: "black",
+                    fontSize: 18,
+                    fontFamily: "Inter",
+                    fontWeight: "400",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  Input Cargo Route
+                </p>
                 <div className="bg-white rounded-lg">
                   <div className="gap-x-3">
                     <div className="flex flex-col w-full p-2">
-                      <label htmlFor="">Starting Location:</label>
+                      <label
+                        style={{
+                          color: "black",
+                          fontSize: 15,
+                          fontFamily: "Inter",
+                          fontWeight: "400",
+                          wordWrap: "break-word",
+                        }}
+                        htmlFor=""
+                      >
+                        Starting Location:
+                      </label>
                       <input
-                        id="quantity"
-                        name="quantity"
-                        value={cargoContents.quantity}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          paddingLeft: 20,
+                          paddingRight: 20,
+                          paddingTop: 9,
+                          paddingBottom: 10,
+                          background: "white",
+                          borderRadius: 10,
+                          border: "1px #848185 solid",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: 10,
+                          display: "inline-flex",
+                        }}
+                        id="starting_location"
+                        name="starting_location"
+                        value={cargoContents.starting_location}
                         onChange={handleInputChange}
                         type="text"
                         className="h-10 p-2 border-2 border-black rounded-lg"
                         placeholder="Input starting location"
                       />
                       <span style={{ color: "red" }}>
-                        {formErrors.quantity}
+                        {formErrors.starting_location}
                       </span>
                     </div>
                     <div className="flex flex-col w-full p-2">
-                      <label htmlFor="">Discharge Location:</label>
+                      <label
+                        style={{
+                          color: "black",
+                          fontSize: 15,
+                          fontFamily: "Inter",
+                          fontWeight: "400",
+                          wordWrap: "break-word",
+                        }}
+                        htmlFor=""
+                      >
+                        Discharge Location:
+                      </label>
                       <input
-                        id="valuable"
-                        name="valuable"
-                        value={cargoContents.valuable}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          paddingLeft: 20,
+                          paddingRight: 20,
+                          paddingTop: 9,
+                          paddingBottom: 10,
+                          background: "white",
+                          borderRadius: 10,
+                          border: "1px #848185 solid",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: 10,
+                          display: "inline-flex",
+                        }}
+                        id="destination"
+                        name="destination"
+                        value={cargoContents.destination}
                         onChange={handleInputChange}
                         type="text"
                         className="h-10 p-2 border-2 border-black rounded-lg"
                         placeholder="Input discharge location"
                       />
                       <span style={{ color: "red" }}>
-                        {formErrors.valuable}
+                        {formErrors.destination}
                       </span>
                     </div>
                   </div>
@@ -308,71 +653,203 @@ function Tracking() {
 
               {/**customer details form ---------------------------------------------------------------------- */}
               <div className="mt-4">
-                <p className="text-lg">Customers Details</p>
-                <p className="text-lg pb-2">Input Customers Details</p>
+                <p
+                  className="text-lg"
+                  style={{
+                    color: "black",
+                    fontSize: 23,
+                    fontFamily: "Inter",
+                    fontWeight: "600",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  Customers Details
+                </p>
+                <p
+                  className="text-lg pb-2"
+                  style={{
+                    color: "black",
+                    fontSize: 18,
+                    fontFamily: "Inter",
+                    fontWeight: "400",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  Input Customers Details
+                </p>
                 <div className="bg-white rounded-lg">
                   <div className="gap-x-3">
                     <div className="flex flex-col w-full p-2 ">
-                      <label htmlFor="">Recievers name:</label>
+                      <label
+                        htmlFor=""
+                        style={{
+                          color: "black",
+                          fontSize: 15,
+                          fontFamily: "Inter",
+                          fontWeight: "400",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        Recievers name:
+                      </label>
                       <input
-                        id="quantity"
-                        name="quantity"
-                        value={cargoContents.quantity}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          paddingLeft: 20,
+                          paddingRight: 20,
+                          paddingTop: 9,
+                          paddingBottom: 10,
+                          background: "white",
+                          borderRadius: 10,
+                          border: "1px #848185 solid",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: 10,
+                          display: "inline-flex",
+                        }}
+                        id="customer_name"
+                        name="customer_name"
+                        value={cargoContents.customer_name}
                         onChange={handleInputChange}
                         type="text"
                         className="h-10 p-2 border-2 border-black rounded-lg"
                         placeholder="Recievers name"
                       />
                       <span style={{ color: "red" }}>
-                        {formErrors.quantity}
+                        {formErrors.customer_name}
                       </span>
                     </div>
                     <div className="flex flex-col w-full p-2">
-                      <label htmlFor="">Recievers Contact:</label>
+                      <label
+                        htmlFor=""
+                        style={{
+                          color: "black",
+                          fontSize: 15,
+                          fontFamily: "Inter",
+                          fontWeight: "400",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        Recievers Contact:
+                      </label>
                       <input
-                        id="valuable"
-                        name="valuable"
-                        value={cargoContents.valuable}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          paddingLeft: 20,
+                          paddingRight: 20,
+                          paddingTop: 9,
+                          paddingBottom: 10,
+                          background: "white",
+                          borderRadius: 10,
+                          border: "1px #848185 solid",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: 10,
+                          display: "inline-flex",
+                        }}
+                        id="customer_phone"
+                        name="customer_phone"
+                        value={cargoContents.customer_phone}
+                        onChange={handleInputChange}
+                        type="text"
+                        className="h-10 p-2 border-2 border-black rounded-lg"
+                        placeholder="Recievers Contact (phone number)"
+                      />
+                      <span style={{ color: "red" }}>
+                        {formErrors.customer_phone}
+                      </span>
+                    </div>
+                    <div className="flex flex-col w-full p-2">
+                      <label
+                        htmlFor=""
+                        style={{
+                          color: "black",
+                          fontSize: 15,
+                          fontFamily: "Inter",
+                          fontWeight: "400",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        Recievers Email:
+                      </label>
+                      <input
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          paddingLeft: 20,
+                          paddingRight: 20,
+                          paddingTop: 9,
+                          paddingBottom: 10,
+                          background: "white",
+                          borderRadius: 10,
+                          border: "1px #848185 solid",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: 10,
+                          display: "inline-flex",
+                        }}
+                        id="customer_email"
+                        name="customer_email"
+                        value={cargoContents.customer_email}
                         onChange={handleInputChange}
                         type="text"
                         className="h-10 p-2 border-2 border-black rounded-lg"
                         placeholder="Recievers Contact"
                       />
                       <span style={{ color: "red" }}>
-                        {formErrors.valuable}
+                        {formErrors.customer_email}
                       </span>
                     </div>
                     <div className="flex flex-col w-full p-2">
-                      <label htmlFor="">Recievers Email:</label>
+                      <label
+                        htmlFor=""
+                        style={{
+                          color: "black",
+                          fontSize: 15,
+                          fontFamily: "Inter",
+                          fontWeight: "400",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        Delievery Address:
+                      </label>
                       <input
-                        id="weight"
-                        name="weight"
-                        value={cargoContents.weight}
-                        onChange={handleInputChange}
-                        type="text"
-                        className="h-10 p-2 border-2 border-black rounded-lg"
-                        placeholder="Recievers Contact"
-                      />
-                      <span style={{ color: "red" }}>{formErrors.weight}</span>
-                    </div>
-                    <div className="flex flex-col w-full p-2">
-                      <label htmlFor="">Delievery Address:</label>
-                      <input
-                        id="weight"
-                        name="weight"
-                        value={cargoContents.weight}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          paddingLeft: 20,
+                          paddingRight: 20,
+                          paddingTop: 9,
+                          paddingBottom: 10,
+                          background: "white",
+                          borderRadius: 10,
+                          border: "1px #848185 solid",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: 10,
+                          display: "inline-flex",
+                        }}
+                        id="customer_address"
+                        name="customer_address"
+                        value={cargoContents.customer_address}
                         onChange={handleInputChange}
                         type="text"
                         className="h-10 p-2 border-2 border-black rounded-lg"
                         placeholder="Delievery Address"
                       />
-                      <span style={{ color: "red" }}>{formErrors.weight}</span>
+                      <span style={{ color: "red" }}>
+                        {formErrors.customer_address}
+                      </span>
                     </div>
                   </div>
-                  <div className=" flex justify-center px-4 gap-x-6 pt-2 pb-2">
-                    <button className=" px-8 py-2 bg-white border-[#ED7D1A] border-2 rounded-md w-full">
-                      Back
-                    </button>
+                  <div className=" flex justify-center px-2 gap-x-6 pt-2 pb-2">
+                    <NavLink to={"/dashboard"}>
+                      <button className=" px-8 py-2 bg-white border-[#ED7D1A] border-2 rounded-md w-full">
+                        Back
+                      </button>
+                    </NavLink>
                     <button
                       className=" px-8 py-2 bg-[#ED7D1A] rounded-md w-full"
                       type="submit"
