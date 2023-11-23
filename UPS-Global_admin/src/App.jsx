@@ -14,7 +14,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/update" element={<Update/>} />
-        <Route path="/summary" element={<Summary/>} />
+        <Route path="/summary/:documentId" element={<Summary/>} />
       </Routes>
     </Router>
   );

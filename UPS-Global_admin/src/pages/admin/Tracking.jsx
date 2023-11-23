@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { dataBase } from "../../config/firebase";
-import { collection, Timestamp, addDoc, arrayUnion } from "firebase/firestore";
+import { collection, Timestamp, addDoc } from "firebase/firestore";
 import { NavLink, useNavigate } from "react-router-dom";
 
 function Tracking() {
@@ -20,6 +20,8 @@ function Tracking() {
     //pending delivery date
     delivery_date: "",
     status: "in port",
+    locations: [],
+    creationDate: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -41,9 +43,11 @@ function Tracking() {
     quantity: "",
   });
 
+  // useState for cargo valuables
   const [dataArray, setDataArray] = useState([]);
   const [error, setError] = useState("");
 
+  //handle user input from forms
   const handleInput = (e) => {
     const { name, value } = e.target;
     setInputValues((prevValues) => ({
@@ -52,12 +56,12 @@ function Tracking() {
     }));
   };
 
+  //adding cargo valuables
   const addCargo = () => {
     if (!inputValues.valuable || !inputValues.weight || !inputValues.quantity) {
       setError("All fields must be filled out.");
       return;
     }
-    console.log("Adding to dataArray:", inputValues);
     setError("");
     setDataArray((prevArray) => [...prevArray, inputValues]);
     setInputValues({
@@ -66,11 +70,6 @@ function Tracking() {
       quantity: "",
     });
   };
-
-  useEffect(() => {
-    // Log dataArray whenever it changes
-    console.log("dataArray:", dataArray);
-  }, [dataArray]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -119,8 +118,15 @@ function Tracking() {
             origin: cargoContents.starting_location,
             destination_point: cargoContents.destination,
           },
+          locations: [
+            {
+              date: Timestamp.now(),
+              status: "At Kimoshiro port,  illinos, 390238, Japan",
+            },
+          ],
           cargo_valuables: dataArray,
           status: "In Transit",
+          creation_date: Timestamp.now(),
         });
 
         setCargoContent({
@@ -137,10 +143,10 @@ function Tracking() {
         alert("Form submitted successfully!");
         //set document id
         setDocumentId(docRef.id);
-        navigate(`/dashboard`);
+        //navigate
+        navigate(`/summary/${docRef.id}`);
       } catch (error) {
         alert(error);
-        console.error("error was found: ", error);
       }
       setFormErrors({
         package_type: "",
@@ -231,17 +237,58 @@ function Tracking() {
       <section className="w-full sm:w-[60%] mx-auto flex justify-center min-h-screen">
         <div className="w-full sm:w-[80%] mx-auto p-1">
           <div className="bg-[#F7F5F8]/30 w-full p-4 ">
-          <div style={{color: 'black', paddingBottom: 30,  fontSize: 20, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>Fill in details to generate tracking number</div>
-          <div style={{color: 'black', fontSize: 23, fontFamily: 'Inter', fontWeight: '600', wordWrap: 'break-word'}}>Cargo Details</div>
-          <div style={{color: 'black', fontSize: 18, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Input Cargo Details</div>
+            <div
+              style={{
+                color: "black",
+                paddingBottom: 30,
+                fontSize: 20,
+                fontFamily: "Inter",
+                fontWeight: "500",
+                wordWrap: "break-word",
+              }}
+            >
+              Fill in details to generate tracking number
+            </div>
+            <div
+              style={{
+                color: "black",
+                fontSize: 23,
+                fontFamily: "Inter",
+                fontWeight: "600",
+                wordWrap: "break-word",
+              }}
+            >
+              Cargo Details
+            </div>
+            <div
+              style={{
+                color: "black",
+                fontSize: 18,
+                fontFamily: "Inter",
+                fontWeight: "400",
+                wordWrap: "break-word",
+              }}
+            >
+              Input Cargo Details
+            </div>
             <form action="" onSubmit={handleSubmit}>
               <div className="pb-4 bg-white rounded-lg p-2">
                 <div className="flex flex-col pt-4">
                   <input
-                  style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 9, paddingBottom: 10, borderRadius: 10, border: '1px #848185 solid', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex'}}
+                    style={{
+                      paddingLeft: 20,
+                      paddingRight: 20,
+                      paddingTop: 9,
+                      paddingBottom: 10,
+                      borderRadius: 10,
+                      border: "1px #848185 solid",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      gap: 10,
+                      display: "inline-flex",
+                    }}
                     id="package_type"
                     name="package_type"
-                  
                     value={cargoContents.package_type}
                     onChange={handleInputChange}
                     type="text"
