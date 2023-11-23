@@ -2,12 +2,12 @@ import React from "react";
 import cards from "../../lib/cardsDetails";
 import Navlinks from "../../components/Navlinks";
 import Footer from "../../components/Footer";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { dataBase } from "../../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-function Home({ onValueChange }) {
+function Home() {
   const [userValue, setUserValue] = useState("");
   const navigate = useNavigate();
 
@@ -50,13 +50,12 @@ function Home({ onValueChange }) {
               We are your strategic partner, helping you achieve your business
               goals and bringing your goods to your doorsteps.
             </p>
-            <button className="text-white rounded-md py-2 px-14 bg-yellow-400">
+            <button className="text-white rounded-md py-2 px-14 bg-[#ED7D1A]">
               Track Shipment
             </button>
           </div>
         </div>
       </section>
-
       {/**second section starts .................................................................... */}
       <section className="h-full w-full">
         <div className="w-full lg:w-[80%] block lg:flex justify-evenly mx-auto pt-[3%] pb-[3%] p-2">
@@ -117,7 +116,7 @@ function Home({ onValueChange }) {
               />
               <button
                 onClick={handleSearch}
-                className="bg-[#FFB607] px-16 py-2 rounded-md text-white mt-4 sm:mt-0"
+                className="bg-[#ED7D1A] px-16 py-2 rounded-md text-white mt-4 sm:mt-0"
               >
                 Track
               </button>

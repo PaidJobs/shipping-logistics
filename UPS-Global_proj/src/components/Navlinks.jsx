@@ -12,18 +12,6 @@ function Navlinks() {
                         <li className=' text-xs'>Courier Service</li>
                     </ul>
                 </div>
-                {/* <div className='w-[25%] md:flex justify-around hidden'>
-                    <NavLink
-                     to={"/sign-up"}
-                    >
-                        <button className='border-2 border-yellow-400 rounded-md text-yellow-400 h-9 px-10'>Sign Up</button>
-                    </NavLink>
-                    <NavLink
-                        to={"/login"}
-                    >
-                        <button className='text-white rounded-md h-9 px-10 bg-yellow-400'>Login</button>
-                    </NavLink>
-                </div> */}
             </div>
         </section>
     )

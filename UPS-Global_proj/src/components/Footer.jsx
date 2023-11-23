@@ -27,7 +27,6 @@ function Footer() {
         <div className="max-w-md pt-4 sm:pt-0">
           <h2>Contact Us</h2>
           <p>Info.upsglobalfleetcourier@gmail.com</p>
-          <p>+888 1234 1234 1234</p>
         </div>
       </div>
       <div className="text-center border-t-2 mt-7 text-white">
