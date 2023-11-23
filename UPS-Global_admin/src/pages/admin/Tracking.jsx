@@ -121,7 +121,7 @@ function Tracking() {
           locations: [
             {
               date: Timestamp.now(),
-              status: "At Kimoshiro port,  illinos, 390238, Japan",
+              status: cargoContents.starting_location,
             },
           ],
           cargo_valuables: dataArray,
