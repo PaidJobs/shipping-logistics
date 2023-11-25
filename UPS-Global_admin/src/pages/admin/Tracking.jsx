@@ -537,7 +537,7 @@ function Tracking() {
                     </div>
                     <div className="pt-4 flex justify-end">
                       <button
-                        className="px-8 py-2 bg-[#ED7D1A] rounded-md"
+                        className="px-8 py-2 bg-[#ED7D1A] text-white rounded-md"
                         type="button"
                         onClick={addCargo}
                       >
@@ -864,7 +864,7 @@ function Tracking() {
                       </button>
                     </NavLink>
                     <button
-                      className=" px-8 py-2 bg-[#ED7D1A] rounded-md w-full"
+                      className=" px-8 py-2 bg-[#ED7D1A] text-white rounded-md w-full"
                       type="submit"
                       onClick={validateForm}
                     >

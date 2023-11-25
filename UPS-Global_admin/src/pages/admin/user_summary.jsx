@@ -180,7 +180,7 @@ function Summary() {
           </p>
           {/**button......................................................................................*/}
           <NavLink to={"/dashboard"}>
-            <button className=" w-full py-3 rounded-lg bg-[#ED7D1A] mt-3 mb-3">
+            <button className=" w-full py-3 rounded-lg bg-[#ED7D1A] text-white mt-3 mb-3">
               Done
             </button>
           </NavLink>
