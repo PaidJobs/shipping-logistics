@@ -78,33 +78,33 @@ function Tracking() {
   return (
     <main>
       <section className="w-full h-full">
-        <div className="w-full lg:w-[80%] mx-auto sm:flex justify-between py-2 p-4 mt-2">
-          <div className="flex gap-x-1">
-            <img src="/assets/logo.png" alt="" />
-            <div className="">
+        <div className="w-full lg:w-[80%] mx-auto sm:flex justify-between py-2 p-4 mt-2 2xl:max-w-7xl">
+          <div className="flex gap-x-2">
+            <img src="/assets/logo.png" className="w-12 h-12" alt="" />
+            <div className="w-full">
               <p className="text-lg">UPs Global Fleet</p>
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>
-          <div className="block sm:flex gap-x-2 sm:w-[50%] w-full">
+          <div className="flex gap-x-2 sm:w-[50%] w-full pt-4">
             <input
               type="text"
-              className="w-full rounded-md outline-none border-2 border-[#848185] pl-2 h-12 mt-2 sm:mt-0"
+              className="w-full rounded-lg outline-none border-2 border-[#848185] pl-2 h-12"
               placeholder="Track Shipment"
             />
-            <button className="bg-[#ED7D1A] px-16 h-12 rounded-md text-white mt-4 md sm:mt-0">
+            <button className="bg-[#ED7D1A] px-5 sm:px-16 h-12 rounded-lg text-white">
               Track
             </button>
           </div>
         </div>
       </section>
       {/**stepper component  */}
-      <div className=" pt-[2%] pb-[2%] hidden sm:block">
+      <div className="pt-[2%] pb-[2%] mx-auto hidden sm:block 2xl:max-w-7xl">
         <Stepper />
       </div>
       {/**stepper component  */}
       <section className="w-full h-full">
-        <div className="w-full lg:w-[80%] mx-auto grid center-glass gap-4">
+        <div className="w-full pb-[10%] lg:w-[80%] mx-auto grid center-glass gap-4 2xl:max-w-7xl">
           <div className=" ">
             {/**customer details --------------------------------------------------------- */}
             <div className=" p-4 bg-[#848185]/30">
@@ -198,7 +198,7 @@ function Tracking() {
             </div>
             <div className="w-full flex sm:justify-end justify-center pb-5">
               <NavLink to={"/"}>
-                <button className=" bg-[#ED7D1A] text-lg py-2 px-28 rounded-md mt-2 mr-3">
+                <button className=" bg-[#ED7D1A] text-white text-lg py-2 px-28 rounded-md mt-2">
                   Back
                 </button>
               </NavLink>
@@ -241,7 +241,6 @@ function Tracking() {
           </div>
         </div>
       </section>
-      <Footer />
     </main>
   );
 }

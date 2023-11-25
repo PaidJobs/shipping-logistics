@@ -13,13 +13,13 @@ function DashBoard() {
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>
-          <div className="block sm:flex gap-x-2 w-full sm:w-[50%] pt-2">
+          <div className="flex gap-x-2 w-full sm:w-[50%] pt-2">
             <input
               type="text"
               className="w-full rounded-md outline-none border-2 border-[#848185] pl-2 h-12"
               placeholder="Track Shipment"
             />
-            <button className="bg-[#FFB607] px-16 h-12 rounded-md text-white mt-4 sm:mt-0">
+            <button className="bg-[#ED7D1A] px-6 sm:px-16 h-12 rounded-md text-white">
               Track
             </button>
           </div>
@@ -28,17 +28,17 @@ function DashBoard() {
       {/**section one..................................................... */}
       {/**section two..................................................... */}
       <section className="w-full min-h-screen">
-        <div className="w-full lg:w-[80%] mx-auto p-2">
+        <div className="w-full lg:w-[80%] mx-auto p-2 2xl:max-w-7xl">
           <div className="pt-4">
             <div className="relative">
               <img
                 src="/assets/containers.png"
-                className="h-[280px] w-full object-cover brightness-75 rounded-lg"
+                className="h-[280px] w-full object-cover brightness-50 rounded-lg"
                 alt=""
               />
-              <div className="absolute top-[20%]">
-                <p className="text-5xl self-center pl-4 text-white ">
-                  Track your <br /> shipment with us
+              <div className="absolute top-[30%]">
+                <p className="text-2xl sm:text-4xl sm:text-start text-center pl-4 text-white max-w-xs">
+                  Track your shipment with us
                 </p>
               </div>
             </div>
