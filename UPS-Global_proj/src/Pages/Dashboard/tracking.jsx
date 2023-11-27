@@ -10,6 +10,7 @@ import { FaTimes } from "react-icons/fa";
 function Tracking() {
   const { documentId } = useParams();
   const [userData, setUserData] = useState(null);
+
   //for the sum of the items
   const [totalSum, setTotalSum] = useState(0);
   const [lastObjectValues, setLastObjectValues] = useState(null);
@@ -23,6 +24,7 @@ function Tracking() {
         if (docSnap.exists()) {
           const data = docSnap.data();
           const weight_kg = docSnap.data();
+          
           // Assuming 'cargo_valuables' is the array field in your document
           const cargoValuablesArray = weight_kg?.cargo_valuables || [];
 
@@ -107,7 +109,7 @@ function Tracking() {
         <div className="w-full pb-[10%] lg:w-[80%] mx-auto grid center-glass gap-4 2xl:max-w-7xl">
           <div className=" ">
             {/**customer details --------------------------------------------------------- */}
-            <div className=" p-4 bg-[#848185]/30">
+            <div className=" p-4 bg-[#848185]/10">
               <p className=" pb-3">Customer Details</p>
               <div className=" rounded-lg bg-white">
                 <ul className="w-full p-2 rounded-lg bg-white">
@@ -140,7 +142,7 @@ function Tracking() {
             </div>
           </div>
           <div className="">
-            <div className="p-4 bg-[#848185]/30 pb-7">
+            <div className="p-4 bg-[#848185]/10 pb-7">
               <p className=" pb-3">Cargo Details</p>
               <div className="bg-white p-2 rounded-lg">
                 <ul className="w-full p-2 rounded-lg bg-white">
@@ -179,7 +181,7 @@ function Tracking() {
             </div>
 
             <div className="mt-8">
-              <div className="p-4 bg-[#848185]/30">
+              <div className="p-4 bg-[#848185]/10">
                 <p className=" pb-3">Cargo Content</p>
                 <div className="rounded-lg bg-white">
                   {userData?.cargo_valuables.map((item, index) => (

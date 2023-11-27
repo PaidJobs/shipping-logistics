@@ -6,10 +6,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { dataBase } from "../../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 function Home() {
   const [userValue, setUserValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleInput = (e) => {
@@ -19,8 +21,15 @@ function Home() {
   };
 
   const handleSearch = async () => {
-    try {
+    if (userValue === '') {
+      setErrorMessage('Please enter information before tracking.');
+    } else {
+      setErrorMessage('');
       setLoading(true);
+      // Change the button text to "Tracking...
+      // You can also perform any additional actions here
+    }
+    try {
       const docRef = doc(dataBase, "products", userValue.trim());
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -28,6 +37,7 @@ function Home() {
       } else {
         navigate("/dashboard");
       }
+      setLoading(true);
     } catch (error) {
       console.log("Error searching document:", error);
     }
@@ -39,30 +49,31 @@ function Home() {
       {/** hero section.................................................................... */}
       <section className="h-full w-full">
         <div className="2xl:max-w-7xl relative w-full mx-auto max-[520px]:min-h-screen">
-        <div className="">
-          <img
-            src="/assets/hero-bg.jpg"
-            className="object-top object-cover h-full w-full absolute brightness-50"
-            alt=""
-          />
-          <div className="relative xl:max-w-6xl ">
-            <div className="w-full sm:max-w-3xl flex items-center min-h-screen sm:h-full pl-6 text-white sm:pl-[7%] sm:pt-[4%]">
-              <div>
-                <h1 className="text-4xl tracking-normal leading-normal sm:text-7xl font-bold">
-                  Reliable Freight Solutions For Your Shipments
-                </h1>
-                <p className="max-w-md text-[18px] pt-2 pb-4">
-                  We are your strategic partner, helping you achieve your business
-                  goals and bringing your goods to your doorsteps.
-                </p>
-                <button className="text-white rounded-md py-2 px-14 bg-[#ED7D1A]">
-                  Track Shipment
-                </button>
+          <div className="">
+            <img
+              src="/assets/hero-bg.jpg"
+              className="object-top object-cover h-full w-full absolute brightness-50"
+              alt=""
+            />
+            <div className="relative xl:max-w-6xl ">
+              <div className="w-full sm:max-w-3xl flex items-center min-h-screen sm:h-full pl-6 text-white sm:pl-[7%] sm:pt-[4%]">
+                <div>
+                  <h1 className="text-4xl tracking-normal leading-normal sm:text-7xl font-bold">
+                    Reliable Freight Solutions For Your Shipments
+                  </h1>
+                  <p className="max-w-md text-[18px] pt-2 pb-4">
+                    We are your strategic partner, helping you achieve your
+                    business goals and bringing your goods to your doorsteps.
+                  </p>
+                  <AnchorLink href="#tracking">
+                    <button className="text-white rounded-md py-2 px-14 bg-[#ED7D1A]">
+                      Track Shipment
+                    </button>
+                  </AnchorLink>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
         </div>
       </section>
       {/**second section starts .................................................................... */}
@@ -99,7 +110,9 @@ function Home() {
                 className="w-full md:max-w-sm text-center p-4 rounded-md bg-[#FFFFFF] mb-3"
               >
                 <img src={item.icon} alt="" className="pt-4 pb-4 mx-auto" />
-                <h3 className=" text-para pt-2 pb-2 text-[#ED7D1A] font-bold">{item.heading}</h3>
+                <h3 className=" text-para pt-2 pb-2 text-[#ED7D1A] font-bold">
+                  {item.heading}
+                </h3>
                 <p className=" text-para pt-2 pb-2">{item.paragraph}</p>
               </div>
             ))}
@@ -115,7 +128,7 @@ function Home() {
             <h3 className="text-center font-bold text-[30px] pb-10 pt-8">
               Need to track your shipment with us?
             </h3>
-            <div className="flex gap-x-3 sm:gap-x-6 p-4 sm:p-0">
+            <div className="flex gap-x-3 sm:gap-x-6 p-4 sm:p-0" id="tracking">
               <input
                 type="text"
                 value={userValue}
@@ -131,6 +144,9 @@ function Home() {
                 {loading ? "Tracking...." : "Track"}
               </button>
             </div>
+              {errorMessage && (
+                  <p className="text-[#ED7D1A] mt-2">{errorMessage}</p>
+              )}
           </div>
         </div>
       </section>
