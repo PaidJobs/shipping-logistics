@@ -7,6 +7,14 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import SearchBox from "../../components/search";
+import { FaCheckCircle } from "react-icons/fa";
+import "../../components/stepper.css";
+
+const steps = [
+  { name: "Port", airURL: "/assets/port.png", shipIcon: "/assets/port.png" }, // Use appropriate icons for your application
+  { name: "In Transit", airURL: "/assets/en-route.png", shipIcon: "/assets/O-Ship.png" },
+  { name: "Destination", airURL: "/assets/delivered.png", shipIcon: "/assets/delivered.png" },
+];
 
 function Tracking() {
   const { documentId } = useParams();
@@ -15,6 +23,10 @@ function Tracking() {
   //for the sum of the items
   const [totalSum, setTotalSum] = useState(0);
   const [lastObjectValues, setLastObjectValues] = useState(null);
+
+  //for the stepper progress
+  const [currentStep, setCurrentStep] = useState(1);
+  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +37,7 @@ function Tracking() {
         if (docSnap.exists()) {
           const data = docSnap.data();
           const weight_kg = docSnap.data();
-          
+
           // Assuming 'cargo_valuables' is the array field in your document
           const cargoValuablesArray = weight_kg?.cargo_valuables || [];
 
@@ -66,6 +78,7 @@ function Tracking() {
   // Check the condition (e.g., name === 'Siri') to determine whether to show the modal
   const name = "delayed";
   const shouldShowModal = name === userData?.status.toLowerCase();
+  const shipStatus = "sea"
 
   useEffect(() => {
     // Open the modal automatically when the condition is true
@@ -73,6 +86,20 @@ function Tracking() {
       setModalOpen(true);
     }
   }, [shouldShowModal]);
+
+
+  useEffect(() => {
+    // Update the current step based on the current status
+    if(userData?.status.toLocaleLowerCase() === "port"){
+      setCurrentStep(1);
+    }
+    else if(userData?.status.toLocaleLowerCase() === "delivered"){
+      setCurrentStep(3)
+    }
+    else{
+      setCurrentStep(2)
+    }
+  }, [])
 
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -90,13 +117,41 @@ function Tracking() {
             </div>
           </div>
           <div className="flex gap-x-2 sm:w-[50%] w-full pt-4">
-            <SearchBox/>
+            <SearchBox />
           </div>
         </div>
       </section>
       {/**stepper component  */}
-      <div className="pt-[2%] pb-[2%] mx-auto hidden sm:block 2xl:max-w-7xl">
-        <Stepper />
+      <div className="pt-[2%] pb-[2%] mx-auto 2xl:max-w-7xl">
+        <div className="w-full sm:w-[80%] mx-auto">
+          <div className="flex justify-between">
+            {steps?.map((item, index) => (
+              <div
+                key={index}
+                className={`step-item ${
+                  currentStep === index + 1 && "active"
+                } ${(index + 1 < currentStep || complete) && "complete"}`}
+              >
+                <div className="step text-[20px]">
+                  {userData?.cargo_details.delivery_method.toLowerCase() === shipStatus ? (<img src={item.shipIcon} className="w-10 h-10" alt="" />) : (<img src={item.airURL} className="w-10 h-10" alt="" />)}
+                </div>
+                <p className="text-base">{item.name}</p>
+              </div>
+            ))}
+          </div>
+          {
+            <button
+            onClick={() => {
+              currentStep === steps.length
+                ? setComplete(true)
+                : setCurrentStep((prev) => prev + 1);
+            }}
+            className="bg-red-400 py-2 px-16"
+          >
+            Next
+          </button>
+          }
+        </div>
       </div>
       {/**stepper component  */}
       <section className="w-full h-full">

@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBox from "../../components/search";
 
 function DashBoard() {
   return (
@@ -14,14 +15,7 @@ function DashBoard() {
             </div>
           </div>
           <div className="flex gap-x-2 w-full sm:w-[50%] pt-2">
-            <input
-              type="text"
-              className="w-full rounded-md outline-none border-2 border-[#848185] pl-2 h-12"
-              placeholder="Track Shipment"
-            />
-            <button className="bg-[#ED7D1A] px-6 sm:px-16 h-12 rounded-md text-white">
-              Track
-            </button>
+            <SearchBox/>
           </div>
         </div>
       </section>
@@ -37,7 +31,7 @@ function DashBoard() {
                 alt=""
               />
               <div className="absolute top-[30%]">
-                <p className="text-2xl sm:text-4xl sm:text-start text-center pl-4 text-white max-w-xs">
+                <p className="text-2xl sm:text-4xl text-start pl-4 text-white max-w-[263px]">
                   Track your shipment with us
                 </p>
               </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./stepper.css"
+import { FaCheckCircle } from "react-icons/fa";
 
 const steps = [
   { name: "Port", iconURL: "/assets/port.png" }, // Use appropriate icons for your application
@@ -8,40 +9,25 @@ const steps = [
 ];
 
 const Stepper = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [complete, setComplete] = useState(false);
 
   return (
-    
-    <div className="w-[80%] mx-auto">
-      <div className="flex items-center justify-center space-x-4 p-2">
-        {steps.map((step, index) => (
-          <div
-            key={step.name}
-            className={`flex-1 step-item ${
-              index === currentStep ? "text-green-400" : "text-orange-400"
-            }`}
-          >
-            <div className="relative flex flex-col items-center">
-              <div
-                className={`rounded-full h-10 w-10 flex items-center justify-center  ${
-                  index === currentStep ? "bg-transparent" : "bg-transparent"
-                }`}
-              >
-                <img src={step.iconURL} alt={`${step.name} icon`} className="w-full h-full object-cover" />
-              </div>
-              <div className="text-center text-sm mt-1">{step.name}</div>
-              {index < steps.length - 1 && (
-                <div
-                  className={`absolute top-1/2 -translate-y-1/2 left-full w-full h-0 bg-black transition duration-500 ease-in-out ${
-                    index < currentStep ? "bg-blue-600" : ""
-                  }`}
-                  style={{ right: "50%", zIndex: -1 }}
-                />
-              )}
-            </div>
+    <div className="w-full sm:w-[80%] mx-auto">
+      <div className="flex justify-between">
+        {steps?.map((item, index) => (
+          <div key={index} className={`step-item ${currentStep === index + 1 && "active"} ${( index + 1 < currentStep || complete ) && "complete"}`}>
+            <div className="step text-[20px]">{( index + 1 < currentStep || complete ) ? <FaCheckCircle size={20}/> : index + 1 }</div>
+            <p className="text-base font-semibold">{item.name}</p>
           </div>
         ))}
       </div>
+      <button
+      onClick={() => {
+        currentStep === steps.length ? setComplete(true) : 
+        setCurrentStep((prev) => prev + 1)
+      }} 
+      className="bg-red-400 py-2 px-16">Next</button>
     </div>
   );
 };
