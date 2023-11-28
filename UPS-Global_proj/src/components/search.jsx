@@ -31,7 +31,7 @@ function SearchBox() {
         if (docSnap.exists()) {
           navigate(`/tracking/${userValue}`);
           //reload window after navigaton
-          window.location.reload();
+          // window.location.reload();
         } else {
           navigate("/dashboard");
         }
