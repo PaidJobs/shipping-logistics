@@ -1,13 +1,10 @@
 import React from "react";
-import Footer from "../../components/Footer";
-import Stepper from "../../components/Stepper";
 import { dataBase } from "../../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import SearchBox from "../../components/search";
-import { FaCheckCircle } from "react-icons/fa";
 import "../../components/stepper.css";
 
 const steps = [
