@@ -72,12 +72,12 @@ function Email() {
       <Navlinks />
       {/**email section--------------------------------------------------------------------------- */}
       <section className="w-full h-full">
-        <div className="w-full min-h-screen md:w-[70%] mx-auto flex justify-center items-center pt-[10%] pb-[10%] 2xl:max-w-7xl">
+        <div className="w-full min-h-screen md:w-[70%] mx-auto flex justify-center items-center pt-[10%] pb-[10%] p-2 2xl:max-w-7xl">
           <form action="">
             <p className="pb-4 text-2xl font-semibold">Contact us.</p>
-            <div className="bg-[#84818508]/10 p-3 rounded-lg">
+            <div className="bg-[#84818508] p-3 rounded-lg">
             <div className="w-full md:w-[620px] mx-auto p-2 bg-white rounded-lg">
-              <div className="flex flex-col w-full pt-3">
+              <div className="block w-full pt-3">
                 <label htmlFor="firstname">First Name</label>
                 <input
                   type="text"

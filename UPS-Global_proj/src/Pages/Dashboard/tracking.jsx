@@ -6,6 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
+import SearchBox from "../../components/search";
 
 function Tracking() {
   const { documentId } = useParams();
@@ -89,14 +90,7 @@ function Tracking() {
             </div>
           </div>
           <div className="flex gap-x-2 sm:w-[50%] w-full pt-4">
-            <input
-              type="text"
-              className="w-full rounded-lg outline-none border-2 border-[#848185] pl-2 h-12"
-              placeholder="Track Shipment"
-            />
-            <button className="bg-[#ED7D1A] px-5 sm:px-16 h-12 rounded-lg text-white">
-              Track
-            </button>
+            <SearchBox/>
           </div>
         </div>
       </section>
