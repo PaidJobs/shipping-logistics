@@ -53,7 +53,7 @@ function TableComponent() {
         <tbody>
           {product.map((item, index) => (
             <tr key={item.id || index} className="w-[80%] p-52">
-              <td className="text-start pt-2 pb-2 pl-2">{index}</td>
+              <td className="text-start pt-2 pb-2 pl-2">{index + 1}</td>
               <td className="text-start pt-2 pb-2">{item.id.trim()}</td>
               <td>{item.cargo_details.shipping_date.toDate().toDateString()}</td>
               {item.cargo_details.delivery_date === "" ? <td>Pending</td> : <td>{item.cargo_details.delivery_date}</td>}

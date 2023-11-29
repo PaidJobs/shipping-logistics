@@ -5,11 +5,13 @@ import {
   Routes,
   Route,
   useLocation,
+  BrowserRouter,
 } from "react-router-dom";
 import DashBoard from "./Pages/Dashboard";
 import Tracking from "./Pages/Dashboard/tracking";
-import { useState } from "react";
 import { useLayoutEffect } from "react";
+import Email from "./components/email";
+import Success from "./components/success";
 
 function App() {
   const Wrapper = ({ children }) => {
@@ -20,25 +22,18 @@ function App() {
     return children;
   };
 
-  const [userValue, setUserValue] = useState("");
-
-  const handleUserValueChange = (newValue) => {
-    setUserValue(newValue);
-  };
-
   return (
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={<Home onValueChange={handleUserValueChange} />}
-        />
-        <Route
-          path="/tracking/:userValue"
-          element={<Tracking userValue={userValue} />}
-        />
-        <Route path="/dashboard" element={<DashBoard />} />
-      </Routes>
+    <BrowserRouter>
+      <Wrapper>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/tracking/:documentId" element={<Tracking />} />
+          <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/email" element={<Email />}/>
+          <Route path="/success" element={<Success/>}/>
+        </Routes>
+      </Wrapper>
+    </BrowserRouter>
   );
 }
 

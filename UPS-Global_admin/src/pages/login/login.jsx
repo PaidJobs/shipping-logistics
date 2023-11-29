@@ -30,7 +30,7 @@ function LoginAdmin() {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert( error.message);
-        console.log(errorCode, errorMessage);
+        alert(errorCode, errorMessage)
         setError(true);
       } finally {
         setLoading(false);
@@ -83,7 +83,7 @@ function LoginAdmin() {
                 className="w-full bg-[#ED7D1A] text-center rounded-md py-2"
                 disabled={loading}
               >
-                 {loading ? "Loading..." : "Login"}
+                {loading ? "Loading..." : "Login"}
               </button>
               {error && <span>Wrong email or password</span>}
             </div>
