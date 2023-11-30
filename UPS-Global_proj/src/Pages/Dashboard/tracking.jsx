@@ -136,7 +136,7 @@ function Tracking() {
               </div>
             ))}
           </div>
-          {
+          {/* {
             <button
             onClick={() => {
               currentStep === steps.length
@@ -147,7 +147,7 @@ function Tracking() {
           >
             Next
           </button>
-          }
+          } */}
         </div>
       </div>
       {/**stepper component  */}
