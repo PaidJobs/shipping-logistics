@@ -19,7 +19,7 @@ function Home() {
               className="object-top object-cover h-full w-full absolute brightness-50"
               alt=""
             />
-            <div className="relative xl:max-w-6xl ">
+            <div className="relative xl:max-w-7xl ">
               <div className="w-full sm:max-w-3xl flex items-center min-h-screen sm:h-full pl-6 text-white sm:pl-[7%] sm:pt-[4%]">
                 <div>
                   <h1 className="text-4xl tracking-normal leading-normal sm:text-7xl font-bold">

@@ -36,6 +36,13 @@ function Email() {
     if(isValid){
         
         navigate("/success")
+        //clear form field
+        setEmailMessage({
+          firstname: "",
+          lastname: "",
+          email: "",
+          message: "",
+        })
     }
   };
 
