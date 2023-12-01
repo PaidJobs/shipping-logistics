@@ -23,7 +23,6 @@ function SearchBox() {
         setErrorMessage('');
         setLoading(true);
         // Change the button text to "Tracking...
-        // You can also perform any additional actions here
       }
       try {
         const docRef = doc(dataBase, "products", userValue.trim());
@@ -33,11 +32,14 @@ function SearchBox() {
           //reload window after navigaton
           window.location.reload();
         } else {
+          alert("Not found!")
+          window.location.reload();
           navigate("/dashboard");
         }
         setLoading(true);
       } catch (error) {
-        console.log("Error searching document:", error);
+        alert("Error searching document", error)
+        window.location.reload();
       }
     };
 
