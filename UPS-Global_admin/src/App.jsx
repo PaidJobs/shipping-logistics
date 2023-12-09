@@ -13,8 +13,8 @@ function App() {
         <Route path="/" element={<LoginAdmin />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tracking" element={<Tracking />} />
-        <Route path="/update" element={<Update/>} />
-        <Route path="/summary/:documentId" element={<Summary/>} />
+        <Route path="/update/:trackingNumber" element={<Update />} />
+        <Route path="/summary/:documentId" element={<Summary />} />
       </Routes>
     </Router>
   );

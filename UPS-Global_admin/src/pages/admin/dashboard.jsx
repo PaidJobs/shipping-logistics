@@ -43,7 +43,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="w-full lg:w-[70%] mx-auto bg-[#848185]/30 p-4 mt-5">
+        <div className="w-full lg:w-[70%] mx-auto bg-[#848185]/10 p-4 mt-5">
           <p className=" text-lg font-semibold pb-4">Shipment Statistics</p>
           <TableComponent />
         </div>
