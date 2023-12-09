@@ -9,8 +9,16 @@ import "../../components/stepper.css";
 
 const steps = [
   { name: "Port", airURL: "/assets/port.png", shipIcon: "/assets/port.png" }, // Use appropriate icons for your application
-  { name: "In Transit", airURL: "/assets/en-route.png", shipIcon: "/assets/O-Ship.png" },
-  { name: "Destination", airURL: "/assets/delivered.png", shipIcon: "/assets/delivered.png" },
+  {
+    name: "In Transit",
+    airURL: "/assets/en-route.png",
+    shipIcon: "/assets/O-Ship.png",
+  },
+  {
+    name: "Destination",
+    airURL: "/assets/delivered.png",
+    shipIcon: "/assets/delivered.png",
+  },
 ];
 
 function Tracking() {
@@ -75,7 +83,7 @@ function Tracking() {
   // Check the condition (e.g., name === 'Siri') to determine whether to show the modal
   const name = "delayed";
   const shouldShowModal = name === userData?.status.toLowerCase();
-  const shipStatus = "sea"
+  const shipStatus = "sea";
 
   useEffect(() => {
     // Open the modal automatically when the condition is true
@@ -84,19 +92,16 @@ function Tracking() {
     }
   }, [shouldShowModal]);
 
-
   useEffect(() => {
     // Update the current step based on the current status
-    if(userData?.status.toLocaleLowerCase() === "port"){
+    if (userData?.status.toLocaleLowerCase() === "port") {
       setCurrentStep(1);
+    } else if (userData?.status.toLocaleLowerCase() === "delivered") {
+      setCurrentStep(3);
+    } else {
+      setCurrentStep(2);
     }
-    else if(userData?.status.toLocaleLowerCase() === "delivered"){
-      setCurrentStep(3)
-    }
-    else{
-      setCurrentStep(2)
-    }
-  }, [])
+  }, []);
 
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -130,7 +135,12 @@ function Tracking() {
                 } ${(index + 1 < currentStep || complete) && "complete"}`}
               >
                 <div className="step text-[20px]">
-                  {userData?.cargo_details.delivery_method.toLowerCase() === shipStatus ? (<img src={item.shipIcon} className="w-10 h-10" alt="" />) : (<img src={item.airURL} className="w-10 h-10" alt="" />)}
+                  {userData?.cargo_details.delivery_method.toLowerCase() ===
+                  shipStatus ? (
+                    <img src={item.shipIcon} className="w-10 h-10" alt="" />
+                  ) : (
+                    <img src={item.airURL} className="w-10 h-10" alt="" />
+                  )}
                 </div>
                 <p className="text-base">{item.name}</p>
               </div>
