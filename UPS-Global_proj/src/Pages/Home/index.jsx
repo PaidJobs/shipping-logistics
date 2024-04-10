@@ -12,7 +12,7 @@ function Home() {
       <Navlinks />
       {/** hero section.................................................................... */}
       <section className="h-full w-full">
-        <div className="2xl:max-w-7xl relative w-full mx-auto max-[520px]:min-h-screen">
+        <div className="2xl:max-w-8xl relative w-full mx-auto max-[520px]:min-h-screen">
           <div className="">
             <img
               src="/assets/hero-bg.jpg"
@@ -20,7 +20,7 @@ function Home() {
               alt=""
             />
             <div className="relative xl:max-w-7xl ">
-              <div className="w-full sm:max-w-3xl flex items-center min-h-screen sm:h-full pl-6 text-white sm:pl-[7%] sm:pt-[4%]">
+              <div className="w-full sm:max-w-3xl flex items-center min-h-screen sm:h-full pl-6 text-white sm:pl-[10%] sm:pt-[4%]">
                 <div>
                   <h1 className="text-4xl tracking-normal leading-normal sm:text-7xl font-bold">
                     Reliable Freight Solutions For Your Shipments

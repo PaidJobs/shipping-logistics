@@ -11,7 +11,7 @@ function Footer() {
             alt=""
           />
           <ul className=" pl-2">
-            <li className="">UPs Global Fleet</li>
+            <li className="">Global Fleet</li>
             <li className=" text-xs">Courier Service</li>
           </ul>
         </div>
@@ -26,11 +26,12 @@ function Footer() {
         </div>
         <div className="w-full sm:max-w-md pt-4 sm:pt-0 grid place-content-center sm:place-content-start text-center sm:text-start">
           <h2>Contact Us</h2>
-          <p>Info.upsglobalfleetcourier@gmail.com</p>
+          <p>Info.globalfleetcourier@gmail.com</p>
+          <p>+888 1234 1234 1234</p>
         </div>
       </div>
       <div className="text-center border-t-2 mt-7 text-white">
-        <p className="pt-6 block sm:flex justify-center">Copyright&copy; UPs Global Fleet Courier Service</p>
+        <p className="pt-6 block sm:flex justify-center">Copyright&copy;Global Fleet Courier Service</p>
       </div>
     </div>
   );

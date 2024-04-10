@@ -3,21 +3,21 @@ import { dataBase } from "../../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { FaTimes } from "react-icons/fa";
+import { FaCheck, FaTimes } from "react-icons/fa";
 import SearchBox from "../../components/search";
 import "../../components/stepper.css";
 
 const steps = [
-  { name: "Port", airURL: "/assets/port.png", shipIcon: "/assets/port.png" }, // Use appropriate icons for your application
+  { name: "Port", airURL: "/assets/port.png", shipIcon: "/assets/port.png" },
   {
     name: "In Transit",
-    airURL: "/assets/en-route.png",
-    shipIcon: "/assets/O-Ship.png",
+    airURL: "/assets/airTransit.png",
+    shipIcon: "/assets/shipTransit.png",
   },
   {
     name: "Destination",
-    airURL: "/assets/delivered.png",
-    shipIcon: "/assets/delivered.png",
+    airURL: "/assets/deliveredVan.png",
+    shipIcon: "/assets/deliveredVan.png",
   },
 ];
 
@@ -28,10 +28,6 @@ function Tracking() {
   //for the sum of the items
   const [totalSum, setTotalSum] = useState(0);
   const [lastObjectValues, setLastObjectValues] = useState(null);
-
-  //for the stepper progress
-  const [currentStep, setCurrentStep] = useState(1);
-  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,16 +88,29 @@ function Tracking() {
     }
   }, [shouldShowModal]);
 
+  //for the stepper progress
+  const [currentStep, setCurrentStep] = useState(1);
+  const [complete, setComplete] = useState(false);
+
   useEffect(() => {
-    // Update the current step based on the current status
-    if (userData?.status.toLocaleLowerCase() === "port") {
-      setCurrentStep(1);
-    } else if (userData?.status.toLocaleLowerCase() === "delivered") {
-      setCurrentStep(3);
-    } else {
-      setCurrentStep(2);
+    if (userData) {
+      const status = userData.status?.toLocaleLowerCase();
+      switch (status) {
+        case "in port":
+          setCurrentStep(1);
+          break;
+        case "in transit":
+          setCurrentStep(3);
+          break;
+        case "delivered":
+          setCurrentStep(3);
+          setComplete(true);
+          break;
+        default:
+          setCurrentStep(1); // Default step if status is not recognized
+      }
     }
-  }, []);
+  }, [userData]);
 
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -114,11 +123,11 @@ function Tracking() {
           <div className="flex gap-x-2">
             <img src="/assets/logo.png" className="w-12 h-12" alt="" />
             <div className="w-full">
-              <p className="text-lg">UPs Global Fleet</p>
+              <p className="text-lg">Global Fleet</p>
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>
-          <div className="flex gap-x-2 sm:w-[50%] w-full pt-4">
+          <div className="flex gap-x-2 sm:w-[50%] w-full">
             <SearchBox />
           </div>
         </div>
@@ -141,23 +150,27 @@ function Tracking() {
                   ) : (
                     <img src={item.airURL} className="w-10 h-10" alt="" />
                   )}
+                  {/* {
+                    index + 1 < currentStep || complete ? <FaCheck size={20} color="white"/> : index + 1
+                  } */}
                 </div>
                 <p className="text-base">{item.name}</p>
               </div>
             ))}
           </div>
-          {/* {
-            <button
-            onClick={() => {
-              currentStep === steps.length
-                ? setComplete(true)
-                : setCurrentStep((prev) => prev + 1);
-            }}
-            className="bg-red-400 py-2 px-16"
-          >
-            Next
-          </button>
-          } */}
+          {
+            // <button
+            //   onClick={() => {
+            //     currentStep === steps.length
+            //       ? setComplete(true)
+            //       : setCurrentStep((prev) => prev + 1);
+            //     console.log(currentStep);
+            //   }}
+            //   className="bg-red-400 py-2 px-16"
+            // >
+            //   Next
+            // </button>
+          }
         </div>
       </div>
       {/**stepper component  */}

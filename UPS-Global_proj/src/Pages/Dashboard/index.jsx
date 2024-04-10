@@ -10,7 +10,7 @@ function DashBoard() {
           <div className="flex gap-x-1">
             <img src=" /assets/logo.png" alt="" />
             <div className="w-full">
-              <p className="text-lg">UPs Global Fleet</p>
+              <p className="text-lg">Global Fleet</p>
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>

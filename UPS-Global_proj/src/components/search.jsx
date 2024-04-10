@@ -31,9 +31,9 @@ function SearchBox() {
         //reload window after navigaton
         window.location.reload();
       } else {
-        alert("Not found!");
-        window.location.reload();
         navigate("/dashboard");
+        window.location.reload();
+        
       }
       setLoading(true);
     } catch (error) {

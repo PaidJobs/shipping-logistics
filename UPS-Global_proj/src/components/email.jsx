@@ -32,9 +32,8 @@ function Email() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const isValid = validateForm();
-
+    
     if(isValid){
-        
         navigate("/success")
         //clear form field
         setEmailMessage({
