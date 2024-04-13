@@ -43,36 +43,36 @@ function TableComponent() {
   }, []);
 
   return (
-    <div className="overflow-auto">
+    <div className="overflow-x-auto">
       <table className="w-full table-auto bg-white border border-gray-100 relative">
         <thead>
-          <tr>
-            <th className=" text-start pl-2 pr-2">S/N</th>
-            <th className=" text-start">Tracking Number</th>
-            <th className=" text-start">Shipping Date</th>
-            <th className=" text-start">Delievery Date</th>
-            <th className=" text-start">Error Date</th>
-            <th className=" text-start">Status</th>
+          <tr className="">
+            <th className=" text-start pl-2 pr-2 pb-2 pt-2">S/N</th>
+            <th className=" text-start px-10">Tracking Number</th>
+            <th className=" text-start px-10">Shipping Date</th>
+            <th className=" text-start px-10">Delievery Date</th>
+            <th className=" text-start px-10">Error Date</th>
+            <th className=" text-start px-10">Status</th>
           </tr>
         </thead>
         <tbody>
           {product.map((item, index) => (
-            <tr key={item.id || index} className="w-[80%] p-52">
-              <td className="text-start pt-2 pb-2 pl-2">{index + 1}</td>
-              <td className="text-start pt-2 pb-2">{item.id.trim()}</td>
-              <td>
+            <tr key={item.id || index} className="w-full sm:w-[80%] p-52">
+              <td className="text-start px-2 pl-2 pb-2 pt-2">{index + 1}</td>
+              <td className="text-start px-4">{item.id.trim()}</td>
+              <td className="px-4 text-center ">
                 {item.cargo_details.shipping_date.toDate().toDateString()}
               </td>
               {item.cargo_details.delivery_date === "" ? (
-                <td>Pending</td>
+                <td className="px-4 text-center">Pending....</td>
               ) : (
-                <td>{item.cargo_details.delivery_date}</td>
+                <td className="px-4 text-center">{item.cargo_details.delivery_date}</td>
               )}
-              <td>
+              <td className="px-4 text-center sm:text-start">
                 {item.cargo_details.shipping_date.toDate().toDateString()}
               </td>
               <td
-                className={`text-start pt-2 pb-2 ${
+                className={`px-4 text-center ${
                   item.status === "Delivered"
                     ? "text-[#11ED34]"
                     : item.status === "In Transit"
@@ -84,7 +84,7 @@ function TableComponent() {
               >
                 {item.status}
               </td>
-              <td>
+              <td className="px-2">
                 {/* Render the modal when trackingNumber is selected */}
                 {selectedTrackingNumber && (
                   <DropModel

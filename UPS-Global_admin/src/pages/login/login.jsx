@@ -29,7 +29,6 @@ function LoginAdmin() {
       } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert( error.message);
         alert(errorCode, errorMessage)
         setError(true);
       } finally {
@@ -46,7 +45,7 @@ function LoginAdmin() {
       <div className="w-full sm:w-[80%] mx-auto flex gap-x-2 py-2">
         <img src=" /assets/logo.png" alt="" />
         <div className="">
-          <p className="text-lg">UPs Global Fleet</p>
+          <p className="text-lg">Global Fleet</p>
           <p className=" text-xs">Courier Service</p>
         </div>
       </div>
@@ -80,7 +79,7 @@ function LoginAdmin() {
             <div className="pt-5 text-white">
               <button
                 type="submit"
-                className="w-full bg-[#ED7D1A] text-center rounded-md py-2"
+                className="w-full bg-[#ED7D1A] text-center rounded-md py-2 text-lg"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Login"}
