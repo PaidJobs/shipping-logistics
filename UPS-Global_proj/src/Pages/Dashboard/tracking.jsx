@@ -158,19 +158,6 @@ function Tracking() {
               </div>
             ))}
           </div>
-          {
-            // <button
-            //   onClick={() => {
-            //     currentStep === steps.length
-            //       ? setComplete(true)
-            //       : setCurrentStep((prev) => prev + 1);
-            //     console.log(currentStep);
-            //   }}
-            //   className="bg-red-400 py-2 px-16"
-            // >
-            //   Next
-            // </button>
-          }
         </div>
       </div>
       {/**stepper component  */}

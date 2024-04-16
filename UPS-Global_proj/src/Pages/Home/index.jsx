@@ -15,6 +15,7 @@ function Home() {
         <div className="2xl:max-w-8xl relative w-full mx-auto max-[520px]:min-h-screen">
           <div className="">
             <img
+              loading="lazy"
               src="/assets/hero-bg.jpg"
               className="object-top object-cover h-full w-full absolute brightness-50"
               alt=""
