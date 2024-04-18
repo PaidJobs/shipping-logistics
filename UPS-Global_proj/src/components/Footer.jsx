@@ -11,26 +11,27 @@ function Footer() {
             alt=""
           />
           <ul className=" pl-2">
-            <li className="">UPs Global Fleet</li>
+            <li className="">Global Fleet</li>
             <li className=" text-xs">Courier Service</li>
           </ul>
         </div>
         <div className="w-full sm:max-w-md pt-4 sm:pt-0 grid place-content-center sm:place-content-start text-center sm:text-start">
           <h2>Address</h2>
           <p>
-            No. 256, Sec. 7, Zhongshan Rd.,
-            <br />
-            Zhonghe Dist., New Taipei City
-            <br /> 235035, Taiwan (R.O.C.)
+            Pacific Place, Jalan PJU 1a/4, <br /> Ara Damansara, 47301 Petaling
+            Jaya, <br /> Selangor, Malaysia
           </p>
         </div>
-        <div className="w-full sm:max-w-md pt-4 sm:pt-0 grid place-content-center sm:place-content-start text-center sm:text-start">
+        <div className="w-full p-2 sm:p-0 sm:max-w-md pt-4 sm:pt-0 grid place-content-center sm:place-content-start text-center sm:text-start">
           <h2>Contact Us</h2>
-          <p>Info.upsglobalfleetcourier@gmail.com</p>
+          <p className="break-all">info.globalfleetcourierservice@gmail.com</p>
+          <p>+601 4949 9622</p>
         </div>
       </div>
       <div className="text-center border-t-2 mt-7 text-white">
-        <p className="pt-6 block sm:flex justify-center">Copyright&copy; UPs Global Fleet Courier Service</p>
+        <p className="pt-6 block sm:flex justify-center">
+          Copyright&copy;Global Fleet Courier Service
+        </p>
       </div>
     </div>
   );

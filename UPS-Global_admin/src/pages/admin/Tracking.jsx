@@ -223,7 +223,7 @@ function Tracking() {
           <div className="flex gap-x-1 max-w-sm">
             <img src="/assets/logo.png" alt="" />
             <div className="w-full">
-              <p className="text-lg">UPs Global Fleet</p>
+              <p className="text-lg">Global Fleet</p>
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>
@@ -242,7 +242,6 @@ function Tracking() {
                 color: "black",
                 paddingBottom: 30,
                 fontSize: 20,
-                fontFamily: "Inter",
                 fontWeight: "500",
                 wordWrap: "break-word",
               }}
@@ -252,8 +251,7 @@ function Tracking() {
             <div
               style={{
                 color: "black",
-                fontSize: 23,
-                fontFamily: "Inter",
+                fontSize: 23, 
                 fontWeight: "600",
                 wordWrap: "break-word",
               }}
@@ -264,7 +262,6 @@ function Tracking() {
               style={{
                 color: "black",
                 fontSize: 18,
-                fontFamily: "Inter",
                 fontWeight: "400",
                 wordWrap: "break-word",
               }}
@@ -305,7 +302,6 @@ function Tracking() {
                     style={{
                       color: "black",
                       fontSize: 15,
-                      fontFamily: "Inter",
                       fontWeight: "400",
                       wordWrap: "break-word",
                     }}
@@ -346,7 +342,7 @@ function Tracking() {
                     style={{
                       color: "black",
                       fontSize: 15,
-                      fontFamily: "Inter",
+
                       fontWeight: "400",
                       wordWrap: "break-word",
                     }}
@@ -390,7 +386,6 @@ function Tracking() {
                   style={{
                     color: "black",
                     fontSize: 23,
-                    fontFamily: "Inter",
                     fontWeight: "600",
                     wordWrap: "break-word",
                   }}
@@ -402,7 +397,6 @@ function Tracking() {
                   style={{
                     color: "black",
                     fontSize: 18,
-                    fontFamily: "Inter",
                     fontWeight: "400",
                     wordWrap: "break-word",
                   }}
@@ -428,7 +422,6 @@ function Tracking() {
                           style={{
                             color: "black",
                             fontSize: 15,
-                            fontFamily: "Inter",
                             fontWeight: "400",
                             wordWrap: "break-word",
                           }}
@@ -465,7 +458,6 @@ function Tracking() {
                           style={{
                             color: "black",
                             fontSize: 15,
-                            fontFamily: "Inter",
                             fontWeight: "400",
                             wordWrap: "break-word",
                           }}
@@ -502,7 +494,6 @@ function Tracking() {
                           style={{
                             color: "black",
                             fontSize: 15,
-                            fontFamily: "Inter",
                             fontWeight: "400",
                             wordWrap: "break-word",
                           }}
@@ -557,7 +548,6 @@ function Tracking() {
                   style={{
                     color: "black",
                     fontSize: 23,
-                    fontFamily: "Inter",
                     fontWeight: "600",
                     wordWrap: "break-word",
                   }}
@@ -569,7 +559,6 @@ function Tracking() {
                   style={{
                     color: "black",
                     fontSize: 18,
-                    fontFamily: "Inter",
                     fontWeight: "400",
                     wordWrap: "break-word",
                   }}
@@ -583,7 +572,7 @@ function Tracking() {
                         style={{
                           color: "black",
                           fontSize: 15,
-                          fontFamily: "Inter",
+    
                           fontWeight: "400",
                           wordWrap: "break-word",
                         }}
@@ -624,7 +613,7 @@ function Tracking() {
                         style={{
                           color: "black",
                           fontSize: 15,
-                          fontFamily: "Inter",
+    
                           fontWeight: "400",
                           wordWrap: "break-word",
                         }}
@@ -671,7 +660,6 @@ function Tracking() {
                   style={{
                     color: "black",
                     fontSize: 23,
-                    fontFamily: "Inter",
                     fontWeight: "600",
                     wordWrap: "break-word",
                   }}
@@ -683,7 +671,6 @@ function Tracking() {
                   style={{
                     color: "black",
                     fontSize: 18,
-                    fontFamily: "Inter",
                     fontWeight: "400",
                     wordWrap: "break-word",
                   }}
@@ -698,7 +685,7 @@ function Tracking() {
                         style={{
                           color: "black",
                           fontSize: 15,
-                          fontFamily: "Inter",
+    
                           fontWeight: "400",
                           wordWrap: "break-word",
                         }}
@@ -739,7 +726,7 @@ function Tracking() {
                         style={{
                           color: "black",
                           fontSize: 15,
-                          fontFamily: "Inter",
+    
                           fontWeight: "400",
                           wordWrap: "break-word",
                         }}
@@ -780,7 +767,7 @@ function Tracking() {
                         style={{
                           color: "black",
                           fontSize: 15,
-                          fontFamily: "Inter",
+    
                           fontWeight: "400",
                           wordWrap: "break-word",
                         }}
@@ -821,7 +808,7 @@ function Tracking() {
                         style={{
                           color: "black",
                           fontSize: 15,
-                          fontFamily: "Inter",
+    
                           fontWeight: "400",
                           wordWrap: "break-word",
                         }}

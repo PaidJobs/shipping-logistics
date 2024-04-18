@@ -3,22 +3,27 @@ import { FaEllipsisV, FaTimes } from "react-icons/fa";
 import { getDocs, collection } from "firebase/firestore";
 import { dataBase } from "../../config/firebase";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function TableComponent() {
   const [product, setproduct] = useState([]);
   const docRef = collection(dataBase, "products");
 
-  //for opening and closing model
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedTrackingNumber, setSelectedTrackingNumber] = useState(null);
+  const navigate = useNavigate();
 
-  const openModal = () => {
-    setModalOpen(true);
+  const handleEllipsisClick = (trackingNumber) => {
+    setSelectedTrackingNumber(trackingNumber);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const handleModalClose = () => {
+    setSelectedTrackingNumber(null);
   };
-  //end of model code
+
+  const handleUpdateStatus = (trackingNumber) => {
+    // Navigate to the "update status" page with the trackingNumber
+    navigate(`/update/${trackingNumber}`);
+  };
 
   //useeffect for getting the data from firebase
   useEffect(() => {
@@ -38,30 +43,36 @@ function TableComponent() {
   }, []);
 
   return (
-    <div className="overflow-auto">
-      <table className="w-full table-auto bg-white border border-gray-200 relative">
+    <div className="overflow-x-auto">
+      <table className="w-full table-auto bg-white border border-gray-100 relative">
         <thead>
-          <tr>
-            <th className=" text-start pl-2 pr-2">S/N</th>
-            <th className=" text-start">Tracking Number</th>
-            <th className=" text-start">Shipping Date</th>
-            <th className=" text-start">Delievery Date</th>
-            <th className=" text-start">Error Date</th>
-            <th className=" text-start">Status</th>
+          <tr className="">
+            <th className=" text-start pl-2 pr-2 pb-2 pt-2">S/N</th>
+            <th className=" text-start px-10">Tracking Number</th>
+            <th className=" text-start px-10">Shipping Date</th>
+            <th className=" text-start px-10">Delievery Date</th>
+            <th className=" text-start px-10">Error Date</th>
+            <th className=" text-start px-10">Status</th>
           </tr>
         </thead>
         <tbody>
           {product.map((item, index) => (
-            <tr key={item.id || index} className="w-[80%] p-52">
-              <td className="text-start pt-2 pb-2 pl-2">{index + 1}</td>
-              <td className="text-start pt-2 pb-2">{item.id.trim()}</td>
-              <td>{item.cargo_details.shipping_date.toDate().toDateString()}</td>
-              {item.cargo_details.delivery_date === "" ? <td>Pending</td> : <td>{item.cargo_details.delivery_date}</td>}
-              <td>
+            <tr key={item.id || index} className="w-full sm:w-[80%] p-52">
+              <td className="text-start px-2 pl-2 pb-2 pt-2">{index + 1}</td>
+              <td className="text-start px-4">{item.id.trim()}</td>
+              <td className="px-4 text-center ">
+                {item.cargo_details.shipping_date.toDate().toDateString()}
+              </td>
+              {item.cargo_details.delivery_date === "" ? (
+                <td className="px-4 text-center">Pending....</td>
+              ) : (
+                <td className="px-4 text-center">{item.cargo_details.delivery_date}</td>
+              )}
+              <td className="px-4 text-center sm:text-start">
                 {item.cargo_details.shipping_date.toDate().toDateString()}
               </td>
               <td
-                className={`text-start pt-2 pb-2 ${
+                className={`px-4 text-center ${
                   item.status === "Delivered"
                     ? "text-[#11ED34]"
                     : item.status === "In Transit"
@@ -73,9 +84,16 @@ function TableComponent() {
               >
                 {item.status}
               </td>
-              <td>
-                <DropModel isOpen={isModalOpen} onClose={closeModal}/>
-                <button onClick={openModal}>
+              <td className="px-2">
+                {/* Render the modal when trackingNumber is selected */}
+                {selectedTrackingNumber && (
+                  <DropModel
+                    trackingNumber={selectedTrackingNumber}
+                    onClose={handleModalClose}
+                    onUpdateStatus={handleUpdateStatus}
+                  ></DropModel>
+                )}
+                <button onClick={() => handleEllipsisClick(item.id)}>
                   <FaEllipsisV size={20} color="grey" />
                 </button>
               </td>
@@ -89,12 +107,7 @@ function TableComponent() {
 
 export default TableComponent;
 
-function DropModel({ isOpen, onClose }) {
-  //checking if model is open
-  if (!isOpen) {
-    return null;
-  }
-
+function DropModel({ trackingNumber, onClose, onUpdateStatus, navigate }) {
   return (
     <div className="flex flex-col dropDown shadow-sm">
       <div className="w-full flex justify-end p-1">
@@ -105,12 +118,9 @@ function DropModel({ isOpen, onClose }) {
       <ul className="flex flex-col gap-2 text-sm text-[#848185] pb-2">
         <li className="">
           {" "}
-          <NavLink 
-            to={"/update"}>
-            <button>
-              Update Status
-            </button>
-          </NavLink>
+          <button onClick={() => onUpdateStatus(trackingNumber, navigate)}>
+            Update Status
+          </button>
         </li>
       </ul>
     </div>

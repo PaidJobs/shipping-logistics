@@ -11,7 +11,7 @@ function Dashboard() {
           <div className="flex gap-x-1 max-w-sm">
             <img src=" /assets/logo.png" alt="" />
             <div className="w-full">
-              <p className="text-lg">UPs Global Fleet</p>
+              <p className="text-lg">Global Fleet</p>
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>
@@ -43,8 +43,8 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="w-full lg:w-[70%] mx-auto bg-[#848185]/30 p-4 mt-5">
-          <p className=" text-lg font-semibold pb-4">Shipment Statistics</p>
+        <div className="w-full lg:w-[70%] mx-auto bg-[#848185]/10 p-4 mt-5">
+          <p className="text-lg font-semibold pb-4">Shipment Statistics</p>
           <TableComponent />
         </div>
       </section>
