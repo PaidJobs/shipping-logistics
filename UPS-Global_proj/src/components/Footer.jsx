@@ -24,7 +24,7 @@ function Footer() {
         </div>
         <div className="w-full p-2 sm:p-0 sm:max-w-md pt-4 sm:pt-0 grid place-content-center sm:place-content-start text-center sm:text-start">
           <h2>Contact Us</h2>
-          <p className="break-all">info.globalfleetcourierservice@gmail.com</p>
+          <p className="break-all">support@gfcourier.com</p>
           <p>+601 4949 9622</p>
         </div>
       </div>
