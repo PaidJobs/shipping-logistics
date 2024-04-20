@@ -6,10 +6,9 @@ import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 
 //email ids
-const SERVICE_ID =  "service_b7nijoy";
-const TEMPLATE_ID = "template_mza2xp5";
-const PUBLIC_KEY = "UYLqIlNsebaFbmi67";
-const EMAIL_ADDRESS = "support@gfcourier.com";
+const SERVICE_ID =  "service_4idpfqi";
+const TEMPLATE_ID = "template_xe80blf";
+const PUBLIC_KEY = "oAH0AZ-fGKZIiZZZa"
 
 function Email() {
   const navigate = useNavigate();
