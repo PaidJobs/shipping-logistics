@@ -48,7 +48,7 @@ function Email() {
     const templateParams = {
       firstname: emailMessage.firstname,
       lastname: emailMessage.lastname,
-      replyto: EMAIL_ADDRESS,
+      email: emailMessage.email,
       message: emailMessage.message,
       subject: emailMessage.subject,
     };
@@ -89,27 +89,27 @@ function Email() {
     const errors = {};
 
     if (emailMessage.firstname.trim() === "") {
-      errors.firstname = "first name is required";
+      errors.firstname = "Firstname is required";
       isValid = false;
     }
 
     if (emailMessage.lastname.trim() === "") {
-      errors.lastname = "last name is required";
+      errors.lastname = "Lastname is required";
       isValid = false;
     }
 
     if (emailMessage.email.trim() === "") {
-      errors.email = "email address is required";
+      errors.email = "Email address is required";
       isValid = false;
     }
 
     if (emailMessage.subject.trim() === "") {
-      errors.subject = "subject field cannot be empty";
+      errors.subject = "Subject field cannot be empty";
       isValid = false;
     }
 
     if (emailMessage.message.trim() === "") {
-      errors.message = "message field cannot be empty";
+      errors.message = "Message cannot be empty";
       isValid = false;
     }
 
@@ -136,7 +136,7 @@ function Email() {
                     onChange={handleInput}
                     value={emailMessage.firstname}
                     id="firstname"
-                    placeholder="First name"
+                    placeholder="Firstname"
                   />
                   <span style={{ color: "red" }}>{errorForm.firstname}</span>
                 </div>
@@ -149,7 +149,7 @@ function Email() {
                     onChange={handleInput}
                     value={emailMessage.lastname}
                     id="lastname"
-                    placeholder="Last name"
+                    placeholder="Lastname"
                   />
                   <span style={{ color: "red" }}>{errorForm.lastname}</span>
                 </div>
@@ -158,7 +158,7 @@ function Email() {
                   <input
                     type="email"
                     className="w-full py-2 px-2 rounded-lg outline-none border-[1px] border-[#848185]"
-                    placeholder="enter ur email adress"
+                    placeholder="Enter your email adress"
                     name="email"
                     onChange={handleInput}
                     value={emailMessage.email}
@@ -171,7 +171,7 @@ function Email() {
                   <input
                     type="text"
                     className="w-full py-2 px-2 rounded-lg outline-none border-[1px] border-[#848185]"
-                    placeholder="email subject"
+                    placeholder="Email subject"
                     name="subject"
                     onChange={handleInput}
                     value={emailMessage.subject}
@@ -184,7 +184,7 @@ function Email() {
                   <textarea
                     name="message"
                     className="w-full py-2 px-2 rounded-lg outline-none border-[1px] border-[#848185]"
-                    placeholder="enter message here"
+                    placeholder="Enter message here"
                     onChange={handleInput}
                     value={emailMessage.message}
                     id="message"

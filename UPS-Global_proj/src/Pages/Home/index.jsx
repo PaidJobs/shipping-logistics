@@ -46,7 +46,7 @@ function Home() {
         <div className="w-full lg:w-[80%] block lg:flex justify-evenly gap-x-14 mx-auto pt-[3%] pb-[3%] p-7 2xl:max-w-7xl">
           <div className="w-full lg:max-w-lg self-center font-semibold">
             <h2 className="text-3xl sm:text-5xl pb-4 text-center sm:text-start">
-              Delivering the best globallogistics solutions.
+              Delivering the best global logistics solutions.
             </h2>
             <p className="text-para pb-3 text-center sm:text-start">
               We make logistics much easier and straightforward. Combining good

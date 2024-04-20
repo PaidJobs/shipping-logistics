@@ -8,13 +8,13 @@ function DashBoard() {
       <section className="w-full h-full">
         <div className="w-full lg:w-[80%] mx-auto block sm:flex justify-between py-2 p-2 sm:p-4">
           <div className="flex gap-x-1">
-            <img src=" /assets/logo.png" alt="" />
+            <img src=" /assets/logo.png" className="h-12 w-12 object-center" alt="" />
             <div className="w-full">
               <p className="text-lg">Global Fleet</p>
               <p className=" text-xs">Courier Service</p>
             </div>
           </div>
-          <div className="flex gap-x-2 w-full sm:w-[50%] pt-2">
+          <div className="flex gap-x-2 w-full sm:w-[50%]">
             <SearchBox/>
           </div>
         </div>

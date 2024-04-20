@@ -10,7 +10,7 @@ function Success() {
       <section className="w-full h-full">
         <div className="w-full sm:w-[80%] mx-auto flex justify-center pt-[8%] pb-[8%] 2xl:max-w-7xl">
           <div className="text-center p-4 mx-auto">
-            <FaCheckCircle color="#ED7D1A" size={250} />
+            <FaCheckCircle color="#ED7D1A" size={250} className="mx-auto" />
             <h2 className="pb-3 pt-4 text-2xl font-bold text-[#ED7D1A]">
               Thank You
             </h2>
